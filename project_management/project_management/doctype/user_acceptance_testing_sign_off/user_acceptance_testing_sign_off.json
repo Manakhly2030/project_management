@@ -1,0 +1,230 @@
+{
+ "actions": [],
+ "autoname": "UAT-.#####",
+ "creation": "2024-08-21 14:01:15.960120",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "customer",
+  "contact",
+  "contact_name",
+  "contact_last_name",
+  "column_break_4",
+  "date",
+  "project_owner",
+  "frappe_project_owner",
+  "project_basics_section",
+  "project",
+  "project_description",
+  "section_break_8",
+  "uat_details",
+  "section_break_13",
+  "deliverable_approval",
+  "uat_acceptance_section",
+  "project_managers_signature",
+  "project_managers_signature_date",
+  "column_break_19",
+  "client_signature",
+  "client_signature_date",
+  "printing_details_section",
+  "letter_head",
+  "column_break_18",
+  "print_heading"
+ ],
+ "fields": [
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Customer",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "contact",
+   "fieldtype": "Link",
+   "label": "Contact",
+   "options": "Contact"
+  },
+  {
+   "fetch_from": "contact.first_name",
+   "fieldname": "contact_name",
+   "fieldtype": "Read Only",
+   "label": "Contact First Name"
+  },
+  {
+   "fetch_from": "contact.last_name",
+   "fieldname": "contact_last_name",
+   "fieldtype": "Read Only",
+   "label": "Contact Last Name"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date"
+  },
+  {
+   "fieldname": "project_owner",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "label": "Project Owner",
+   "options": "Employee"
+  },
+  {
+   "fetch_from": "project_owner.employee_name",
+   "fieldname": "frappe_project_owner",
+   "fieldtype": "Read Only",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Frappe Project Owner"
+  },
+  {
+   "fieldname": "project_basics_section",
+   "fieldtype": "Section Break",
+   "label": "Project Basics"
+  },
+  {
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Project",
+   "options": "Project",
+   "reqd": 1
+  },
+  {
+   "fieldname": "project_description",
+   "fieldtype": "Text Editor",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Project Description"
+  },
+  {
+   "fieldname": "section_break_8",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "uat_details",
+   "fieldtype": "Table",
+   "label": "UAT Details",
+   "options": "UAT Details"
+  },
+  {
+   "fieldname": "section_break_13",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "<b>Deliverable Approval:<b><br>\n<p>Signing off on this document signifies that the Customer\u2019s representative is satisfied with the completed deliverable listed above.</p><p>\n</p></b></b>",
+   "fieldname": "deliverable_approval",
+   "fieldtype": "Text Editor",
+   "label": "Deliverable Approval"
+  },
+  {
+   "fieldname": "uat_acceptance_section",
+   "fieldtype": "Section Break",
+   "label": "UAT Acceptance"
+  },
+  {
+   "fieldname": "project_managers_signature",
+   "fieldtype": "Attach Image",
+   "label": "Project Manager's Signature"
+  },
+  {
+   "fieldname": "project_managers_signature_date",
+   "fieldtype": "Date",
+   "label": "Project Managers Signature Date"
+  },
+  {
+   "fieldname": "column_break_19",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "client_signature",
+   "fieldtype": "Attach Image",
+   "label": "Client Signature"
+  },
+  {
+   "fieldname": "client_signature_date",
+   "fieldtype": "Date",
+   "label": "Client Signature Date"
+  },
+  {
+   "fieldname": "printing_details_section",
+   "fieldtype": "Section Break",
+   "label": "Printing Details"
+  },
+  {
+   "fieldname": "letter_head",
+   "fieldtype": "Link",
+   "label": "Letter Head",
+   "options": "Letter Head",
+   "print_hide": 1
+  },
+  {
+   "fieldname": "column_break_18",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "print_heading",
+   "fieldtype": "Link",
+   "label": "Print Heading",
+   "options": "Print Heading"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-08-21 14:01:15.960120",
+ "modified_by": "Administrator",
+ "module": "Project Management",
+ "name": "User Acceptance Testing Sign Off",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Projects User",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Projects Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

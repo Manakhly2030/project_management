@@ -1,0 +1,126 @@
+{
+ "actions": [],
+ "creation": "2024-08-21 13:39:46.828445",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "title",
+  "delivery_request",
+  "column_break_5",
+  "status",
+  "approved_by",
+  "section_break_6",
+  "custom_scripts",
+  "activity",
+  "eps",
+  "column_break_9",
+  "custom_reports",
+  "section_break_8",
+  "description"
+ ],
+ "fields": [
+  {
+   "fetch_from": "delivery_request.title",
+   "fetch_if_empty": 1,
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Title"
+  },
+  {
+   "fieldname": "delivery_request",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Delivery Request",
+   "options": "Delivery Request",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Open",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Open\nApproved"
+  },
+  {
+   "fieldname": "approved_by",
+   "fieldtype": "Link",
+   "label": "Approved By",
+   "options": "User"
+  },
+  {
+   "fieldname": "section_break_6",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "custom_scripts",
+   "fieldtype": "Int",
+   "label": "Custom Scripts"
+  },
+  {
+   "fieldname": "activity",
+   "fieldtype": "Select",
+   "label": "Activity",
+   "options": "\nCustomization"
+  },
+  {
+   "fieldname": "eps",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "EPS",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_9",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "custom_reports",
+   "fieldtype": "Int",
+   "label": "Custom Reports"
+  },
+  {
+   "fieldname": "section_break_8",
+   "fieldtype": "Section Break",
+   "hide_border": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-08-21 13:39:46.828445",
+ "modified_by": "Administrator",
+ "module": "Project Management",
+ "name": "Delivery Action",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "route": "delivery-action",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "title",
+ "track_changes": 1
+}

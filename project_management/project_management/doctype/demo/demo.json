@@ -1,0 +1,122 @@
+{
+ "actions": [],
+ "creation": "2024-08-21 13:00:32.879219",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "series",
+  "start_date",
+  "customer_name",
+  "demo_done_by",
+  "column_break_3",
+  "end_date",
+  "lead_qualification",
+  "lead",
+  "attendees",
+  "section_break_7",
+  "demo_note"
+ ],
+ "fields": [
+  {
+   "default": "DM-.#####",
+   "fieldname": "series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Series",
+   "options": "DM-.#####"
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Start Date",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "lead_qualification.customer_name",
+   "fetch_if_empty": 1,
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "label": "Prospect Name"
+  },
+  {
+   "fieldname": "demo_done_by",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Demo Done By",
+   "options": "User",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Datetime",
+   "label": "End Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "lead_qualification",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Lead Qualification",
+   "options": "Lead Qualification",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "lead_qualification.lead",
+   "fieldname": "lead",
+   "fieldtype": "Link",
+   "label": "Lead",
+   "options": "Lead",
+   "reqd": 1
+  },
+  {
+   "fieldname": "attendees",
+   "fieldtype": "Small Text",
+   "label": "Attendees",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_7",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "demo_note",
+   "fieldtype": "Text Editor",
+   "label": "Demo Note",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-08-21 13:00:32.879219",
+ "modified_by": "Administrator",
+ "module": "Project Management",
+ "name": "Demo",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "customer_name",
+ "track_changes": 1
+}

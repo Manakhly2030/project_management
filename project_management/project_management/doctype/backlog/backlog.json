@@ -1,0 +1,292 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "BCK-LG-.YYYY.-.####",
+ "creation": "2024-08-21 13:30:57.150965",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "title",
+  "stage",
+  "status",
+  "task_type",
+  "priority",
+  "column_break_6",
+  "estimation_size",
+  "product",
+  "deployment_in",
+  "added_automated_tests",
+  "release",
+  "section_break_12",
+  "reference_document_type",
+  "reference_name",
+  "column_break_16",
+  "expected_end_date",
+  "completion_date",
+  "data_13",
+  "designed_by",
+  "developed_by",
+  "column_break_15",
+  "reviewed_by",
+  "tested_by",
+  "section_break_17",
+  "design_link",
+  "column_break_19",
+  "pr_link",
+  "section_break_11",
+  "description",
+  "section_break_27",
+  "sub_tasks"
+ ],
+ "fields": [
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "label": "Title",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "bold": 1,
+   "default": "Planned",
+   "fieldname": "stage",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Stage",
+   "options": "Planned\nDesign\nDesign Completed\nDevelopment\nOn Hold\nDocumentation/Testcases\nReview\nTesting\nCompleted\nInvalid",
+   "reqd": 1
+  },
+  {
+   "default": "Open",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "\nOpen\nCompleted\nCancelled",
+   "reqd": 1
+  },
+  {
+   "fieldname": "task_type",
+   "fieldtype": "Select",
+   "label": "Task Type",
+   "options": "\nNew Feature\nFix\nUX Improvement\nRefactoring\nCustomization\nMaintenance",
+   "reqd": 1
+  },
+  {
+   "default": "3",
+   "description": "1 - Lowest, 5 - Highest",
+   "fieldname": "priority",
+   "fieldtype": "Select",
+   "label": "Priority",
+   "options": "1\n2\n3\n4\n5"
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "S - A Day",
+   "fieldname": "estimation_size",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Estimated Size",
+   "options": "\nS - A Day\nM - Half a Week\nL - A Week\nXL - Two Weeks\nXXL - A Month\nXXL+ - More Than A Month",
+   "reqd": 1
+  },
+  {
+   "fieldname": "product",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Product",
+   "options": "\nERPNext\nFrappe Framework\nFrappe Cloud\nFrappe Helpdesk\nPRM\nExternal Asset\nFrappe Analytics"
+  },
+  {
+   "fieldname": "deployment_in",
+   "fieldtype": "Select",
+   "label": "Deployment in",
+   "options": "\nFrappe\nERPNext\nStandard App (App Store)\nCustom Application\nCustom Script\nExternal Asset"
+  },
+  {
+   "depends_on": "eval:doc.status == 'Completed'",
+   "fieldname": "added_automated_tests",
+   "fieldtype": "Select",
+   "label": "Added Automated Tests?",
+   "mandatory_depends_on": "eval:(doc.status=='Completed' && doc.task_type=='New Feature')",
+   "options": "\nYes\nNo\nNot Applicable"
+  },
+  {
+   "depends_on": "eval:['Completed'].includes(doc.status)",
+   "fieldname": "release",
+   "fieldtype": "Link",
+   "label": "Release",
+   "options": "Release Checklist"
+  },
+  {
+   "fieldname": "section_break_12",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "reference_document_type",
+   "fieldtype": "Link",
+   "label": "Reference Document Type",
+   "options": "DocType"
+  },
+  {
+   "fieldname": "reference_name",
+   "fieldtype": "Dynamic Link",
+   "label": "Reference Name",
+   "options": "reference_document_type"
+  },
+  {
+   "fieldname": "column_break_16",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "expected_end_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Expected End Date",
+   "mandatory_depends_on": "eval: doc.stage == \"Development\""
+  },
+  {
+   "depends_on": "eval:doc.status=='Completed'",
+   "fieldname": "completion_date",
+   "fieldtype": "Date",
+   "label": "Completion Date",
+   "mandatory_depends_on": "eval:doc.status=='Completed'"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "data_13",
+   "fieldtype": "Section Break",
+   "label": "Assignees"
+  },
+  {
+   "fieldname": "designed_by",
+   "fieldtype": "Link",
+   "label": "Designed By",
+   "options": "User"
+  },
+  {
+   "fieldname": "developed_by",
+   "fieldtype": "Link",
+   "label": "Developed By",
+   "options": "User"
+  },
+  {
+   "fieldname": "column_break_15",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "reviewed_by",
+   "fieldtype": "Link",
+   "label": "Reviewed By",
+   "options": "User"
+  },
+  {
+   "fieldname": "tested_by",
+   "fieldtype": "Link",
+   "label": "Tested By",
+   "options": "User"
+  },
+  {
+   "fieldname": "section_break_17",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "design_link",
+   "fieldtype": "Data",
+   "label": "Design Link",
+   "length": 240,
+   "options": "URL"
+  },
+  {
+   "fieldname": "column_break_19",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "pr_link",
+   "fieldtype": "Data",
+   "label": "PR Link",
+   "length": 240,
+   "options": "URL"
+  },
+  {
+   "fieldname": "section_break_11",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_27",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "sub_tasks",
+   "fieldtype": "Table",
+   "label": "Sub Tasks",
+   "options": "Backlog Dependency"
+  }
+ ],
+ "in_create": 1,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-08-21 13:30:57.150965",
+ "modified_by": "Administrator",
+ "module": "Project Management",
+ "name": "Backlog",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Projects Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Projects User",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "title",
+ "track_changes": 1
+}

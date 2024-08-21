@@ -1,0 +1,325 @@
+{
+ "actions": [],
+ "allow_events_in_timeline": 1,
+ "allow_rename": 1,
+ "autoname": "field:customer_name",
+ "creation": "2024-08-21 13:00:13.612132",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "qfc_section",
+  "lead",
+  "opportunity",
+  "customer_name",
+  "pass_to_partner",
+  "column_break_4",
+  "qualified_by",
+  "qualified_on",
+  "status",
+  "unqualified_reason",
+  "bant_section",
+  "budget",
+  "authority",
+  "column_break_8",
+  "need",
+  "timeline",
+  "details_section",
+  "current_state",
+  "pain_point",
+  "impact",
+  "column_break_14",
+  "decision_process",
+  "next_step",
+  "timezone",
+  "discovery_section",
+  "discovery_call_date",
+  "discovery_status",
+  "column_break_12",
+  "discovered_by",
+  "discovery_rejection_reason",
+  "discovery_next_steps",
+  "discovery_notes_section",
+  "discovery_call_notes",
+  "data_security_section",
+  "prospect_shared",
+  "documentation_stored",
+  "documentation_deleted",
+  "column_break_38",
+  "demo_trial",
+  "demo_trial_account",
+  "demo_trial_deleted"
+ ],
+ "fields": [
+  {
+   "fieldname": "qfc_section",
+   "fieldtype": "Section Break",
+   "label": "QFC"
+  },
+  {
+   "fetch_from": "opportunity.party_name",
+   "fetch_if_empty": 1,
+   "fieldname": "lead",
+   "fieldtype": "Link",
+   "label": "Lead",
+   "options": "Lead",
+   "unique": 1
+  },
+  {
+   "fieldname": "opportunity",
+   "fieldtype": "Link",
+   "label": "Opportunity",
+   "options": "Opportunity"
+  },
+  {
+   "fetch_from": "opportunity. customer_name",
+   "fetch_if_empty": 1,
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "label": "Customer/Lead",
+   "unique": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "pass_to_partner",
+   "fieldtype": "Check",
+   "label": "Passed to Partner"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "User",
+   "fieldname": "qualified_by",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Qualified By",
+   "options": "User"
+  },
+  {
+   "default": "Today",
+   "fieldname": "qualified_on",
+   "fieldtype": "Date",
+   "label": "Qualified On"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "In Process\nQualified\nUnqualified",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.status===\"Unqualified\"",
+   "fieldname": "unqualified_reason",
+   "fieldtype": "Link",
+   "label": "Unqualified Reason",
+   "mandatory_depends_on": "eval:doc.status===\"Unqualified\"",
+   "options": "Unqualified Reason"
+  },
+  {
+   "fieldname": "bant_section",
+   "fieldtype": "Section Break",
+   "label": "BANT"
+  },
+  {
+   "fieldname": "budget",
+   "fieldtype": "Data",
+   "label": "Budget"
+  },
+  {
+   "fieldname": "authority",
+   "fieldtype": "Data",
+   "label": "Authority"
+  },
+  {
+   "fieldname": "column_break_8",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "need",
+   "fieldtype": "Data",
+   "label": "Need"
+  },
+  {
+   "fieldname": "timeline",
+   "fieldtype": "Data",
+   "label": "Timeline"
+  },
+  {
+   "fieldname": "details_section",
+   "fieldtype": "Section Break",
+   "label": "Details"
+  },
+  {
+   "fieldname": "current_state",
+   "fieldtype": "Small Text",
+   "label": "Current State"
+  },
+  {
+   "fieldname": "pain_point",
+   "fieldtype": "Small Text",
+   "label": "Pain Point"
+  },
+  {
+   "fieldname": "impact",
+   "fieldtype": "Small Text",
+   "label": "Impact"
+  },
+  {
+   "fieldname": "column_break_14",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "decision_process",
+   "fieldtype": "Small Text",
+   "label": "Decision Process"
+  },
+  {
+   "fieldname": "next_step",
+   "fieldtype": "Small Text",
+   "label": "Next Step"
+  },
+  {
+   "fetch_from": "opportunity.timezone",
+   "fieldname": "timezone",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Timezone"
+  },
+  {
+   "depends_on": "eval:doc.status===\"Qualified\"",
+   "fieldname": "discovery_section",
+   "fieldtype": "Section Break",
+   "label": "Discovery"
+  },
+  {
+   "fieldname": "discovery_call_date",
+   "fieldtype": "Date",
+   "label": "Discovery Call Date"
+  },
+  {
+   "fieldname": "discovery_status",
+   "fieldtype": "Select",
+   "label": "Discovery Status",
+   "options": "\nAccepted\nRejected\nIn Process"
+  },
+  {
+   "fieldname": "column_break_12",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "discovered_by",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Discovered By",
+   "options": "User"
+  },
+  {
+   "depends_on": "eval:doc.discovery_status===\"Rejected\"",
+   "fieldname": "discovery_rejection_reason",
+   "fieldtype": "Link",
+   "label": "Discovery Rejection Reason",
+   "mandatory_depends_on": "eval:doc.discovery_status===\"Rejected\"",
+   "options": "Unqualified Reason"
+  },
+  {
+   "fieldname": "discovery_next_steps",
+   "fieldtype": "Small Text",
+   "label": "Discovery Next Steps"
+  },
+  {
+   "depends_on": "eval:doc.status == 'Qualified'",
+   "fieldname": "discovery_notes_section",
+   "fieldtype": "Section Break",
+   "label": "Discovery Notes"
+  },
+  {
+   "fieldname": "discovery_call_notes",
+   "fieldtype": "Text Editor",
+   "label": "Discovery Call Notes"
+  },
+  {
+   "fieldname": "data_security_section",
+   "fieldtype": "Section Break",
+   "hidden": 1,
+   "label": "Data Security"
+  },
+  {
+   "default": "0",
+   "fieldname": "prospect_shared",
+   "fieldtype": "Check",
+   "label": "Documentation shared by the prospect"
+  },
+  {
+   "depends_on": "eval:doc.prospect_shared==1",
+   "fieldname": "documentation_stored",
+   "fieldtype": "Data",
+   "label": "Document storage link"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.prospect_shared==1",
+   "fieldname": "documentation_deleted",
+   "fieldtype": "Check",
+   "label": "Documentation deleted"
+  },
+  {
+   "fieldname": "column_break_38",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "demo_trial",
+   "fieldtype": "Check",
+   "label": "Created a demo account "
+  },
+  {
+   "depends_on": "eval:doc.demo_trial==1",
+   "fieldname": "demo_trial_account",
+   "fieldtype": "Data",
+   "label": "Demo account link"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.demo_trial==1",
+   "fieldname": "demo_trial_deleted",
+   "fieldtype": "Check",
+   "label": "Account deleted / Data erased"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-08-21 13:00:13.612132",
+ "modified_by": "Administrator",
+ "module": "Project Management",
+ "name": "Lead Qualification",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales User",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "route": "lead-qualification",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

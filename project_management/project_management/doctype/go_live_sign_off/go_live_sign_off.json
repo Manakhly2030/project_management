@@ -1,0 +1,198 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:project_name",
+ "creation": "2024-08-21 14:04:46.147193",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "document_purpose_section",
+  "html_2",
+  "project_details_section",
+  "project_name",
+  "frappe_project_manager",
+  "column_break_6",
+  "customer",
+  "customer_project_champion",
+  "section_break_9",
+  "cut_off_date",
+  "column_break_11",
+  "go_live_announced_on",
+  "section_break_13",
+  "html_14",
+  "section_break_15",
+  "table_multiselect_16",
+  "go_live_sign_off_parameters_and_comments_section",
+  "table_28",
+  "section_break_29",
+  "frappe_project_manager_sign",
+  "project_managers_signature_date",
+  "column_break_31",
+  "customer_project_champion_sign",
+  "client_signature_date"
+ ],
+ "fields": [
+  {
+   "fieldname": "document_purpose_section",
+   "fieldtype": "Section Break",
+   "label": "Document Purpose"
+  },
+  {
+   "fieldname": "html_2",
+   "fieldtype": "HTML",
+   "options": "<p>\nThe purpose of this document is to publish the project Go-Live and obtain the concurrence from the client Project Manager on their readiness to commence their business transactions in ERPNext. \nThis is also to ensure that the client Project Manager has formally announced the project Go-Live within his organization and has aligned the activities and resources accordingly.\n</p>"
+  },
+  {
+   "fieldname": "project_details_section",
+   "fieldtype": "Section Break",
+   "label": "Project Details"
+  },
+  {
+   "fieldname": "project_name",
+   "fieldtype": "Link",
+   "label": "Project Name",
+   "options": "Project",
+   "unique": 1
+  },
+  {
+   "fetch_from": "project_name.project_owner",
+   "fieldname": "frappe_project_manager",
+   "fieldtype": "Data",
+   "label": "Frappe Project Manager"
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "project_name.customer",
+   "fieldname": "customer",
+   "fieldtype": "Data",
+   "label": "Customer"
+  },
+  {
+   "fetch_from": "project_name.project_champion",
+   "fetch_if_empty": 1,
+   "fieldname": "customer_project_champion",
+   "fieldtype": "Data",
+   "label": "Customer Project Champion"
+  },
+  {
+   "fieldname": "section_break_9",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "cut_off_date",
+   "fieldtype": "Date",
+   "label": "Cut Off Date"
+  },
+  {
+   "fieldname": "column_break_11",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "go_live_announced_on",
+   "fieldtype": "Date",
+   "label": "Go Live Announced On"
+  },
+  {
+   "fieldname": "section_break_13",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "html_14",
+   "fieldtype": "HTML",
+   "options": "<p>Hello,</p>\n\n\n<p>Thank you for your acceptance of the data uploaded onto your Production Server. The application has been completely configured as per the requirements signed-off, and the server has been handed over to your team to perform Business transactions.</p>\n\n\n<p>During the Go-Live support period, our Consultants will extend the support to you as and when required.</p>\n\n\n<p>As per the project plan published, you are requested to actively transact on the application and let us know in case any support is required during the Go-Live support period. </p>\n\n\n<p>The below modules have been configured on the Production Server and handed over to your team.</p>\n"
+  },
+  {
+   "fieldname": "section_break_15",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "table_multiselect_16",
+   "fieldtype": "Table MultiSelect",
+   "label": "Modules Implemented",
+   "options": "Sign Off Module"
+  },
+  {
+   "fieldname": "go_live_sign_off_parameters_and_comments_section",
+   "fieldtype": "Section Break",
+   "label": "Go Live Sign Off Parameters and Comments"
+  },
+  {
+   "fieldname": "table_28",
+   "fieldtype": "Table",
+   "options": "Go Live Parameters"
+  },
+  {
+   "fieldname": "section_break_29",
+   "fieldtype": "Section Break"
+  },
+  {
+   "description": "Signature & Date",
+   "fieldname": "frappe_project_manager_sign",
+   "fieldtype": "Attach Image",
+   "label": "Frappe Project Manager"
+  },
+  {
+   "fieldname": "project_managers_signature_date",
+   "fieldtype": "Date",
+   "label": "Project Managers Signature Date"
+  },
+  {
+   "fieldname": "column_break_31",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Signature & Date",
+   "fieldname": "customer_project_champion_sign",
+   "fieldtype": "Attach Image",
+   "label": "Customer Project Champion  "
+  },
+  {
+   "fieldname": "client_signature_date",
+   "fieldtype": "Date",
+   "label": "Client Signature Date"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-08-21 14:04:46.147193",
+ "modified_by": "Administrator",
+ "module": "Project Management",
+ "name": "Go Live Sign Off",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Employee",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

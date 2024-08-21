@@ -1,0 +1,184 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "Prompt",
+ "creation": "2024-08-21 12:35:01.327822",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "meeting_details_section",
+  "meeting_type",
+  "meeting_name",
+  "project",
+  "customer",
+  "created_by",
+  "notify_user_by_email",
+  "column_break_7",
+  "from_date",
+  "to_date",
+  "meeting_agenda",
+  "attendees",
+  "meeting_minutes_section",
+  "action_items",
+  "discussion_summary_section",
+  "points_discussed",
+  "amended_from",
+  "section_break_18",
+  "footer"
+ ],
+ "fields": [
+  {
+   "fieldname": "meeting_details_section",
+   "fieldtype": "Section Break",
+   "label": "Meeting Details"
+  },
+  {
+   "fieldname": "meeting_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Meeting Type",
+   "options": "Internal\nExternal"
+  },
+  {
+   "depends_on": "eval:doc.meeting_type==\"Internal\"",
+   "fieldname": "meeting_name",
+   "fieldtype": "Select",
+   "label": "Meeting Name",
+   "options": "\nFriday Forum\nMarketing Standup\nSales Standup\nOnboarding Standup\nSMB Standup\nSupport Standup\nMonthly EPS Review\nEnterprise Standup\nISO Review"
+  },
+  {
+   "depends_on": "eval:doc.meeting_type==\"External\"",
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "label": "Project",
+   "options": "Project"
+  },
+  {
+   "depends_on": "eval:doc.meeting_type==\"External\"",
+   "fetch_from": "project.customer",
+   "fieldname": "customer",
+   "fieldtype": "Data",
+   "label": "Customer"
+  },
+  {
+   "fieldname": "created_by",
+   "fieldtype": "Link",
+   "label": "Created By",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "notify_user_by_email",
+   "fieldtype": "Check",
+   "label": "Notify User by Email"
+  },
+  {
+   "fieldname": "column_break_7",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "from_date",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "From Time"
+  },
+  {
+   "fieldname": "to_date",
+   "fieldtype": "Datetime",
+   "label": "To Time"
+  },
+  {
+   "fieldname": "meeting_agenda",
+   "fieldtype": "Small Text",
+   "label": "Meeting Agenda"
+  },
+  {
+   "fieldname": "attendees",
+   "fieldtype": "Small Text",
+   "label": "Attendees"
+  },
+  {
+   "fieldname": "meeting_minutes_section",
+   "fieldtype": "Section Break",
+   "label": "Minutes"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "action_items",
+   "fieldtype": "Table",
+   "label": "Action Items",
+   "options": "Meeting Actions"
+  },
+  {
+   "fieldname": "discussion_summary_section",
+   "fieldtype": "Section Break",
+   "label": "Discussion Summary"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "points_discussed",
+   "fieldtype": "Text Editor",
+   "label": "Points Discussed"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Meeting Note",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_18",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "footer",
+   "fieldtype": "Data",
+   "label": "Footer"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-08-21 12:35:01.327822",
+ "modified_by": "Administrator",
+ "module": "Project Management",
+ "name": "Meeting Note",
+ "naming_rule": "Set by user",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Employee",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Projects User",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

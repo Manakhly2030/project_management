@@ -1,0 +1,54 @@
+{
+ "actions": [],
+ "creation": "2024-08-21 13:30:30.784710",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "backlog",
+  "column_break_2",
+  "title",
+  "estimated_size"
+ ],
+ "fields": [
+  {
+   "fieldname": "backlog",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Backlog",
+   "options": "Backlog"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "backlog.title",
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Title",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "backlog.estimation_size",
+   "fieldname": "estimated_size",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Estimated Size",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-08-21 13:30:30.784710",
+ "modified_by": "Administrator",
+ "module": "Project Management",
+ "name": "Backlog Dependency",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

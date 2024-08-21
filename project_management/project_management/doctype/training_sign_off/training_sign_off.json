@@ -1,0 +1,170 @@
+{
+ "actions": [],
+ "autoname": "TR-SIGN-.####",
+ "creation": "2024-08-21 13:57:17.154161",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "project_details_section",
+  "project_name",
+  "frappe_project_manager",
+  "column_break_4",
+  "customer",
+  "customer_project_champion",
+  "project_champion_email_id",
+  "training_details_section",
+  "table_9",
+  "notes_section",
+  "additional_details",
+  "clients_comments_section",
+  "additional_notes",
+  "training_acceptance_section",
+  "project_managers_signature",
+  "project_managers_signature_date",
+  "column_break_16",
+  "client_signature",
+  "client_signature_date"
+ ],
+ "fields": [
+  {
+   "fieldname": "project_details_section",
+   "fieldtype": "Section Break",
+   "label": "Project Details"
+  },
+  {
+   "fieldname": "project_name",
+   "fieldtype": "Link",
+   "label": "Project Name",
+   "options": "Project"
+  },
+  {
+   "fetch_from": "project_name.project_owner",
+   "fieldname": "frappe_project_manager",
+   "fieldtype": "Data",
+   "label": "Frappe Project Manager"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "project_name.customer",
+   "fieldname": "customer",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Customer"
+  },
+  {
+   "fetch_from": "project_name.project_champion",
+   "fieldname": "customer_project_champion",
+   "fieldtype": "Data",
+   "label": "Customer Project Champion"
+  },
+  {
+   "fetch_from": "project_name.email",
+   "fieldname": "project_champion_email_id",
+   "fieldtype": "Data",
+   "label": "Project Champion Email ID"
+  },
+  {
+   "fieldname": "training_details_section",
+   "fieldtype": "Section Break",
+   "label": "Training Details"
+  },
+  {
+   "fieldname": "table_9",
+   "fieldtype": "Table",
+   "options": "Training Details"
+  },
+  {
+   "fieldname": "notes_section",
+   "fieldtype": "Section Break",
+   "label": "Frappe's Comments"
+  },
+  {
+   "fieldname": "additional_details",
+   "fieldtype": "Text Editor",
+   "label": "Additional Details"
+  },
+  {
+   "fieldname": "clients_comments_section",
+   "fieldtype": "Section Break",
+   "label": "Client's Comments"
+  },
+  {
+   "fieldname": "additional_notes",
+   "fieldtype": "Text Editor",
+   "label": "Additional Notes"
+  },
+  {
+   "fieldname": "training_acceptance_section",
+   "fieldtype": "Section Break",
+   "label": "Training Acceptance"
+  },
+  {
+   "fieldname": "project_managers_signature",
+   "fieldtype": "Attach Image",
+   "label": "Project Manager's Signature"
+  },
+  {
+   "fieldname": "project_managers_signature_date",
+   "fieldtype": "Date",
+   "label": "Project Managers Signature Date"
+  },
+  {
+   "fieldname": "column_break_16",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "client_signature",
+   "fieldtype": "Attach Image",
+   "label": "Client Signature"
+  },
+  {
+   "fieldname": "client_signature_date",
+   "fieldtype": "Date",
+   "label": "Client Signature Date"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-08-21 13:57:17.154161",
+ "modified_by": "Administrator",
+ "module": "Project Management",
+ "name": "Training Sign Off",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Employee",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "customer",
+ "track_changes": 1
+}

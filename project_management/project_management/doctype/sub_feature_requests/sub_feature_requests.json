@@ -1,0 +1,57 @@
+{
+ "actions": [],
+ "creation": "2024-08-21 13:49:13.122037",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "feature_request",
+  "status",
+  "priority",
+  "price_estimate"
+ ],
+ "fields": [
+  {
+   "fieldname": "feature_request",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Feature Request",
+   "options": "Feature Request",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "feature_request.status",
+   "fieldname": "status",
+   "fieldtype": "Read Only",
+   "in_list_view": 1,
+   "label": "Status"
+  },
+  {
+   "fetch_from": "feature_request.priority",
+   "fieldname": "priority",
+   "fieldtype": "Read Only",
+   "in_list_view": 1,
+   "label": "Priority"
+  },
+  {
+   "fetch_from": "feature_request.price_estimate_usd",
+   "fieldname": "price_estimate",
+   "fieldtype": "Read Only",
+   "in_list_view": 1,
+   "label": "Price Estimate"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-08-21 13:49:13.122037",
+ "modified_by": "Administrator",
+ "module": "Project Management",
+ "name": "Sub Feature Requests",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}
