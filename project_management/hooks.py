@@ -28,6 +28,14 @@ app_license = "mit"
 # app_include_css = "/assets/project_management/css/project_management.css"
 # app_include_js = "/assets/project_management/js/project_management.js"
 
+app_include_js = [
+    "https://cdnjs.cloudflare.com/ajax/libs/canvg/3.0.9/umd.js",
+    "https://sharonchoong.github.io/svg-exportJS/svg-export.min.js",
+    "https://cdn.jsdelivr.net/npm/pdfkit@0.13.0/js/pdfkit.standalone.js",
+    "https://cdn.jsdelivr.net/npm/blob-stream-browserify@0.1.3/index.js",
+    "https://cdn.jsdelivr.net/npm/svg-to-pdfkit@0.1.8/source.js"
+]
+
 # include js, css files in header of web template
 # web_include_css = "/assets/project_management/css/project_management.css"
 # web_include_js = "/assets/project_management/js/project_management.js"
@@ -49,6 +57,8 @@ doctype_js = {
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
+
+doctype_list_js = {"Task" : "public/js/task_list.js"}
 
 # Svg Icons
 # ------------------
