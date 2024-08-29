@@ -1,6 +1,9 @@
 import frappe, json
 from frappe import _
 from datetime import datetime ,timedelta
+from erpnext.projects.doctype.project.project import Project,get_holiday_list
+from frappe.utils import add_days
+from erpnext.setup.doctype.holiday_list.holiday_list import is_holiday
 @frappe.whitelist()
 def get_tasks_from_multiple_template(name,tasks,parent_task=None,):
     try:
@@ -12,7 +15,6 @@ def get_tasks_from_multiple_template(name,tasks,parent_task=None,):
         for task in tasks:
             template_task_details = frappe.get_doc("Task", task.get("task"))
             tmp_task_details.append(template_task_details)
-            print(template_task_details.__dict__)
             task_doc = doc.create_task_from_template(template_task_details)
             if task.get("start_date"):
                 task_doc.exp_start_date = task.get("start_date")
@@ -30,37 +32,62 @@ def get_tasks_from_multiple_template(name,tasks,parent_task=None,):
         frappe.msgprint(_(str(e)))
     return False
 @frappe.whitelist()
-def get_task_value(template,project,company):
-    last_exp_date=frappe.db.get_value("Task",{"project":project},"exp_start_date",order_by="creation")
-    
-    
+def get_task_value(template,project,as_per,company,custom_start_dates=None):
+    as_per=int(as_per)
     tasks =frappe.get_all("Project Template Task",filters= { "parent": template }, fields= ["name",'task',"subject"])
-    for task in tasks:
-        last_exp_date=next_woking_date(last_exp_date,company)
-        task ['start_date']=str(last_exp_date)
-        task["end_date"]=str(last_exp_date)
-    return tasks
-@frappe.whitelist()
-def next_woking_date(date,company):
-    exp_start_date = datetime.strptime(str(date), '%Y-%m-%d')  if str(type(date)) =="<class 'datetime.date'>" else datetime.strptime(str(date), '%Y-%m-%d %H:%M:%S')
-    exp_start_date = exp_start_date + timedelta(days=1)
-    today = datetime.today()
-    if exp_start_date < today:
-        exp_start_date = today
-    default_holiday_list=frappe.db.get_value("Company",company,"default_holiday_list")
-    if default_holiday_list:
-        to_date=frappe.db.get_value("Holiday List",default_holiday_list,"to_date")
-        to_date=datetime.strptime(str(to_date), '%Y-%m-%d')
-        if to_date >= exp_start_date:
-            leave_date=frappe.get_all("Holiday",{"parent":default_holiday_list},"holiday_date",pluck="holiday_date")
-            if len(leave_date):
-                while True:
-                    if exp_start_date in leave_date:
-                        exp_start_date = exp_start_date + timedelta(days=1)
-                    else:
-                        break
+    self=frappe.get_doc("Project",project)
+    if custom_start_dates:
+
+        custom_start_dates=json.loads(custom_start_dates)
+
+        last_exp_date=custom_start_dates[0].get("start_date")
+        if as_per==1:      
+            for task in custom_start_dates:
+                self.expected_start_date=last_exp_date
+                task_start_duration=frappe.get_doc("Task",task.get("task"))
+                if task["start_date"] > last_exp_date:
+                    task ['start_date']=update_if_holiday(self,task ['start_date'])
+                elif task["start_date"] < last_exp_date:
+                    task ['start_date']=update_if_holiday(self,last_exp_date)
+                self.start_date=task ['start_date']
+
+                task["end_date"]=Project.calculate_end_date(self,task_start_duration)
+                last_exp_date=add_days(task["end_date"],1)
         else:
-            frappe.throw("Default holiday Not in range for  Company  "+company +" \n got date "+str(exp_start_date))
+            for task in custom_start_dates:
+                self.expected_start_date=last_exp_date
+                task_start_duration=frappe.get_doc("Task",task.get("task"))
+                if task["start_date"] > last_exp_date:
+                    task ['start_date']=update_if_holiday(self,task ['start_date'])
+                elif task["start_date"] < last_exp_date:
+                    task ['start_date']=update_if_holiday(self,last_exp_date)
+                self.start_date=task ['start_date']
+                task["end_date"]=task ['start_date']
+                last_exp_date=add_days(task["end_date"],1)
+       
+        tasks =custom_start_dates
+
+
     else:
-        frappe.throw("Please set default holiday list in Company "+company)
-    return exp_start_date 
+        last_exp_date=frappe.db.get_value("Task",{"project":project},"exp_end_date",order_by="creation")
+        last_exp_date=add_days(last_exp_date, 1)
+    
+
+        if as_per==1:      
+            for task in tasks:
+                self.expected_start_date=last_exp_date
+                task_start_duration=frappe.get_doc("Task",task.get("task"))
+                task ['start_date']=Project.calculate_start_date(self,task_start_duration)
+                task["end_date"]=Project.calculate_end_date(self,task_start_duration)
+                last_exp_date=add_days(task["end_date"],1)
+        else:
+            for task in tasks:
+                task ['start_date']=update_if_holiday(self,last_exp_date)
+                task["end_date"]=task ['start_date']
+                last_exp_date=add_days(task["end_date"],1)
+    return tasks
+def update_if_holiday(self, date):
+    holiday_list = self.holiday_list or get_holiday_list(self.company)
+    while is_holiday(holiday_list, date):
+        date = add_days(date, 1)
+    return date
