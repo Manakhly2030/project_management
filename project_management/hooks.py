@@ -148,14 +148,32 @@ doctype_list_js = {"Task" : "public/js/task_list.js"}
 # Document Events
 # ---------------
 # Hook on document methods and events
+fixtures = [
+    {"dt":"Custom Field",
+    "filters":[
+        ["name","in",
+            [
+                "Projects Settings-custom_working_settings",
+                "Projects Settings-custom_duration",
+                "Projects Settings-custom_to_time_",
+                "Projects Settings-custom_from_time",
+            ]
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+        ]
+    ]
+    
+}
+
+]
+doc_events = {
+	"Projects Settings": {
+		"validate": "project_management.overrides.project_settings.validate"
+
+	},
+    "Task":{
+        #"validate": "project_management.overrides.task.task_overlapping"
+    }
+}
 
 # Scheduled Tasks
 # ---------------

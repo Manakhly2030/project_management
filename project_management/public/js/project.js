@@ -24,6 +24,29 @@ frappe.ui.form.on('Project', {
 						label: __("Template Task"),
 						options: "Task",
 					},
+					{
+						
+							default: "0",
+							fieldname: "expected_time",
+							fieldtype: "Float",
+							label: "Expected Time (in hours)",
+							oldfieldname: "expected_time",
+							in_list_view: 1,
+							read_only: 1,
+
+						   	
+					},
+					{
+						
+							fieldname: "type",
+							fieldtype: "Link",
+							label: "Task Type",
+							options: "Task Type",
+							in_list_view: 1,
+							read_only: 1,
+						   
+					},
+
 					
 					{
 						fieldtype: "Date",

@@ -1,7 +1,7 @@
 {
  "actions": [],
  "autoname": "DEL-RQ.#####",
- "creation": "2024-08-21 13:37:04.917664",
+ "creation": "2024-09-02 13:21:13.791586",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -318,21 +318,38 @@
    "options": "Test Scenario"
   }
  ],
- "index_web_pages_for_search": 1,
  "links": [
+  {
+   "group": "Action",
+   "link_doctype": "Delivery Action",
+   "link_fieldname": "delivery_request"
+  },
   {
    "group": "Task",
    "link_doctype": "Backlog",
    "link_fieldname": "reference_name"
   }
  ],
- "modified": "2024-08-21 13:37:04.917664",
+ "modified": "2024-09-02 13:29:38.900568",
  "modified_by": "Administrator",
  "module": "Project Management",
  "name": "Delivery Request",
  "naming_rule": "Expression (old style)",
  "owner": "Administrator",
- "permissions": [],
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Administrator",
+   "share": 1,
+   "write": 1
+  }
+ ],
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
