@@ -98,14 +98,20 @@ def get_task_value(template,project,as_per,company,custom_start_dates=None):
                 
     return tasks
 def update_if_holiday(self, date):
-    holiday_list = self.holiday_list or get_holiday_list(self.company)
-    while is_holiday(holiday_list, date):
-        date = add_days(date, 1)
+    if self.custom_customer_holiday_list:
+        while is_holiday(self.custom_customer_holiday_list, date):
+            date = add_days(date, 1)
+    if self.holiday_list:
+        while is_holiday(self.holiday_list, date):
+            date = add_days(date, 1)
+    elif get_holiday_list(self.company):
+        while is_holiday ( get_holiday_list(self.company), date):
+            date = add_days(date, 1)
     return date
 def update_if_we_working_time(tasks,project):
+    working_hours=frappe.db.get_value("Projects Settings","Projects Settings","custom_duration")
     for task in tasks:
         if task.task_type and frappe.db.get_value("Task Type",task.task_type,"custom_nature")=="Sequence":
-            working_hours=frappe.db.get_value("Projects Settings","Projects Settings","custom_duration")
             if working_hours:
                 task_type_list=frappe.get_list("Task Type",fields=["name"],filters={"custom_nature":"Sequence"},pluck="name")
                 filters={"project":project,
@@ -121,4 +127,5 @@ def update_if_we_working_time(tasks,project):
                                 "exp_end_date":["!=",task.start_date]
                                 },
                 working_hours_per_project2=frappe.db.get_value("Task",filters2,"sum(expected_time)")
+                
                 working_hours_per_project=frappe.db.get_value("Task",filters,"sum(expected_time)")

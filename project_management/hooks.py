@@ -153,10 +153,9 @@ fixtures = [
     "filters":[
         ["name","in",
             [
+                "Projects Settings-custom_working_timeline_",
+                "Projects Settings-custom_working_hours",
                 "Projects Settings-custom_working_settings",
-                "Projects Settings-custom_duration",
-                "Projects Settings-custom_to_time_",
-                "Projects Settings-custom_from_time",
             ]
 
         ]
@@ -171,7 +170,7 @@ doc_events = {
 
 	},
     "Task":{
-        #"validate": "project_management.overrides.task.task_overlapping"
+        "validate": "project_management.overrides.task.task_overlapping"
     }
 }
 
