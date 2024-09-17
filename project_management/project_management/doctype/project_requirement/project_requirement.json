@@ -13,6 +13,7 @@
   "column_break_2",
   "opportunity",
   "lead_qualification",
+  "company",
   "column_break_4",
   "customer",
   "opportunity_name",
@@ -52,58 +53,52 @@
   "accounts_module_section",
   "select_process_1",
   "add_efforts_1",
-  "estimation_details_1",
+  "accounts_details",
   "buying_section",
   "select_process_2",
   "add_efforts_2",
-  "estimation_details_2",
+  "buying_details",
   "stock_section",
   "select_process_3",
   "add_efforts_3",
-  "estimation_details_3",
+  "stock_details",
   "crm_section",
   "select_process_4",
   "add_efforts_4",
-  "estimation_details_4",
+  "crm_details",
   "payroll_section",
   "select_process_5",
   "add_efforts_5",
-  "estimation_details_5",
+  "payroll_details",
   "selling_section",
   "select_process_6",
   "add_efforts_6",
-  "estimation_details_6",
+  "selling_details",
   "hrms_section",
   "select_process_7",
   "add_efforts_7",
-  "estimation_details_7",
+  "hrms_details",
   "projects_section",
   "select_process_8",
   "add_efforts_8",
-  "estimation_details_8",
+  "projects_details",
   "manufacturing_section_section",
   "select_process_9",
   "add_efforts_9",
-  "estimation_details_9",
+  "manufacturing_details",
   "setup_section_section",
   "select_process_10",
   "add_efforts_10",
-  "estimation_details_10",
+  "setup_details",
   "healthcare_section",
   "select_process_11",
   "add_efforts_11",
-  "estimation_details_11",
+  "customization_details",
   "customizations_section",
   "customization_status",
   "customization_request_details",
   "customization_estimations",
   "total_customization_effort",
-  "total_hours_section",
-  "total_config_effort",
-  "column_break_25",
-  "total_other_effort",
-  "column_break_27",
-  "total_efforts",
   "handover_checklist_section",
   "handover_date",
   "opportunity_updated",
@@ -119,7 +114,34 @@
   "column_break_93",
   "completeness",
   "section_break_95",
-  "remarks"
+  "remarks",
+  "thanks_section_section",
+  "thanks",
+  "price_estimation_tab",
+  "total_implementation_hours_section",
+  "currency",
+  "total_config_effort",
+  "total_hourly_rate",
+  "column_break_h50t",
+  "total_other_efforts",
+  "total_efforts",
+  "total_amount",
+  "frappe_cloud_details_section",
+  "frappe_cloud_plan",
+  "column_break_jq4b",
+  "validity",
+  "rate",
+  "column_break_ohsx",
+  "uom",
+  "amount",
+  "amc_details_section",
+  "amc",
+  "column_break_vpmc",
+  "amc_validity",
+  "amc_rate",
+  "column_break_7pfa",
+  "amc_uom",
+  "amc_amount"
  ],
  "fields": [
   {
@@ -396,12 +418,6 @@
    "label": "Add Efforts"
   },
   {
-   "fieldname": "estimation_details_1",
-   "fieldtype": "Table",
-   "label": "Estimation Details",
-   "options": "Estimation Detail"
-  },
-  {
    "depends_on": "eval:doc.buying",
    "fieldname": "buying_section",
    "fieldtype": "Section Break",
@@ -417,12 +433,6 @@
    "fieldname": "add_efforts_2",
    "fieldtype": "Button",
    "label": "Add Efforts"
-  },
-  {
-   "fieldname": "estimation_details_2",
-   "fieldtype": "Table",
-   "label": "Estimation Details",
-   "options": "Estimation Detail"
   },
   {
    "depends_on": "eval:doc.stock",
@@ -442,12 +452,6 @@
    "label": "Add Efforts"
   },
   {
-   "fieldname": "estimation_details_3",
-   "fieldtype": "Table",
-   "label": "Estimation Details",
-   "options": "Estimation Detail"
-  },
-  {
    "depends_on": "eval:doc.crm",
    "fieldname": "crm_section",
    "fieldtype": "Section Break",
@@ -463,12 +467,6 @@
    "fieldname": "add_efforts_4",
    "fieldtype": "Button",
    "label": "Add Efforts"
-  },
-  {
-   "fieldname": "estimation_details_4",
-   "fieldtype": "Table",
-   "label": "Estimation Details",
-   "options": "Estimation Detail"
   },
   {
    "depends_on": "eval:doc.payroll",
@@ -488,12 +486,6 @@
    "label": "Add Efforts"
   },
   {
-   "fieldname": "estimation_details_5",
-   "fieldtype": "Table",
-   "label": "Estimation Details",
-   "options": "Estimation Detail"
-  },
-  {
    "depends_on": "eval:doc.selling",
    "fieldname": "selling_section",
    "fieldtype": "Section Break",
@@ -509,12 +501,6 @@
    "fieldname": "add_efforts_6",
    "fieldtype": "Button",
    "label": "Add Efforts"
-  },
-  {
-   "fieldname": "estimation_details_6",
-   "fieldtype": "Table",
-   "label": "Estimation Details",
-   "options": "Estimation Detail"
   },
   {
    "depends_on": "eval:doc.hrms",
@@ -534,12 +520,6 @@
    "label": "Add Efforts"
   },
   {
-   "fieldname": "estimation_details_7",
-   "fieldtype": "Table",
-   "label": "Estimation Details",
-   "options": "Estimation Detail"
-  },
-  {
    "depends_on": "eval:doc.projects",
    "fieldname": "projects_section",
    "fieldtype": "Section Break",
@@ -555,12 +535,6 @@
    "fieldname": "add_efforts_8",
    "fieldtype": "Button",
    "label": "Add Efforts"
-  },
-  {
-   "fieldname": "estimation_details_8",
-   "fieldtype": "Table",
-   "label": "Estimation Details",
-   "options": "Estimation Detail"
   },
   {
    "depends_on": "eval:doc.manufacturing",
@@ -580,12 +554,6 @@
    "label": "Add Efforts"
   },
   {
-   "fieldname": "estimation_details_9",
-   "fieldtype": "Table",
-   "label": "Estimation Details",
-   "options": "Estimation Detail"
-  },
-  {
    "depends_on": "eval:doc.setup",
    "fieldname": "setup_section_section",
    "fieldtype": "Section Break",
@@ -603,12 +571,6 @@
    "label": "Add Efforts"
   },
   {
-   "fieldname": "estimation_details_10",
-   "fieldtype": "Table",
-   "label": "Estimation Details",
-   "options": "Estimation Detail"
-  },
-  {
    "depends_on": "eval:doc.healthcare",
    "fieldname": "healthcare_section",
    "fieldtype": "Section Break",
@@ -624,12 +586,6 @@
    "fieldname": "add_efforts_11",
    "fieldtype": "Button",
    "label": "Add Efforts"
-  },
-  {
-   "fieldname": "estimation_details_11",
-   "fieldtype": "Table",
-   "label": "Estimation Details",
-   "options": "Estimation Detail"
   },
   {
    "depends_on": "eval:doc.customization",
@@ -659,29 +615,6 @@
    "fieldname": "total_customization_effort",
    "fieldtype": "Float",
    "label": "Total Customization Effort"
-  },
-  {
-   "fieldname": "total_hours_section",
-   "fieldtype": "Section Break",
-   "label": "Total Hours"
-  },
-  {
-   "fieldname": "total_config_effort",
-   "fieldtype": "Float",
-   "label": "Total Configuration Efforts"
-  },
-  {
-   "fieldname": "column_break_25",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "total_other_effort",
-   "fieldtype": "Float",
-   "label": "Total Other Efforts"
-  },
-  {
-   "fieldname": "column_break_27",
-   "fieldtype": "Column Break"
   },
   {
    "fieldname": "total_efforts",
@@ -784,11 +717,216 @@
    "fieldname": "remarks",
    "fieldtype": "Small Text",
    "label": "Feedback Remark"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "fieldname": "total_implementation_hours_section",
+   "fieldtype": "Section Break",
+   "label": "Total Implementation Hours"
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency"
+  },
+  {
+   "fieldname": "total_hourly_rate",
+   "fieldtype": "Float",
+   "label": "Total Hourly Rate"
+  },
+  {
+   "fieldname": "column_break_h50t",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_other_efforts",
+   "fieldtype": "Float",
+   "label": "Total Other Efforts"
+  },
+  {
+   "fieldname": "total_amount",
+   "fieldtype": "Currency",
+   "label": "Total Amount",
+   "options": "currency"
+  },
+  {
+   "fieldname": "accounts_details",
+   "fieldtype": "Table",
+   "label": "Estimation Details",
+   "options": "Estimation Detail"
+  },
+  {
+   "fieldname": "buying_details",
+   "fieldtype": "Table",
+   "label": "Estimation Details",
+   "options": "Estimation Detail"
+  },
+  {
+   "fieldname": "stock_details",
+   "fieldtype": "Table",
+   "label": "Estimation Details",
+   "options": "Estimation Detail"
+  },
+  {
+   "fieldname": "crm_details",
+   "fieldtype": "Table",
+   "label": "Estimation Details",
+   "options": "Estimation Detail"
+  },
+  {
+   "fieldname": "payroll_details",
+   "fieldtype": "Table",
+   "label": "Estimation Details",
+   "options": "Estimation Detail"
+  },
+  {
+   "fieldname": "selling_details",
+   "fieldtype": "Table",
+   "label": "Estimation Details",
+   "options": "Estimation Detail"
+  },
+  {
+   "fieldname": "hrms_details",
+   "fieldtype": "Table",
+   "label": "Estimation Details",
+   "options": "Estimation Detail"
+  },
+  {
+   "fieldname": "projects_details",
+   "fieldtype": "Table",
+   "label": "Estimation Details",
+   "options": "Estimation Detail"
+  },
+  {
+   "fieldname": "manufacturing_details",
+   "fieldtype": "Table",
+   "label": "Estimation Details",
+   "options": "Estimation Detail"
+  },
+  {
+   "fieldname": "setup_details",
+   "fieldtype": "Table",
+   "label": "Estimation Details",
+   "options": "Estimation Detail"
+  },
+  {
+   "fieldname": "customization_details",
+   "fieldtype": "Table",
+   "label": "Estimation Details",
+   "options": "Estimation Detail"
+  },
+  {
+   "fieldname": "thanks",
+   "fieldtype": "Small Text",
+   "label": "End Section"
+  },
+  {
+   "fieldname": "thanks_section_section",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "total_config_effort",
+   "fieldtype": "Float",
+   "label": "Total Configuration Efforts"
+  },
+  {
+   "fieldname": "price_estimation_tab",
+   "fieldtype": "Tab Break",
+   "label": "Price Estimation"
+  },
+  {
+   "fieldname": "frappe_cloud_details_section",
+   "fieldtype": "Section Break",
+   "label": "Frappe Cloud Details"
+  },
+  {
+   "fieldname": "frappe_cloud_plan",
+   "fieldtype": "Small Text",
+   "label": "Frappe Cloud Plan"
+  },
+  {
+   "fieldname": "column_break_jq4b",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "validity",
+   "fieldtype": "Float",
+   "label": "Validity"
+  },
+  {
+   "fieldname": "rate",
+   "fieldtype": "Currency",
+   "label": "Rate",
+   "options": "currency"
+  },
+  {
+   "fieldname": "column_break_ohsx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "uom",
+   "fieldtype": "Select",
+   "label": "UOM",
+   "options": "Month\nYear"
+  },
+  {
+   "fieldname": "amount",
+   "fieldtype": "Currency",
+   "label": "Amount",
+   "options": "currency"
+  },
+  {
+   "fieldname": "amc_details_section",
+   "fieldtype": "Section Break",
+   "label": "AMC Details"
+  },
+  {
+   "fieldname": "amc",
+   "fieldtype": "Small Text",
+   "label": "AMC"
+  },
+  {
+   "fieldname": "column_break_vpmc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "amc_validity",
+   "fieldtype": "Float",
+   "label": "Validity"
+  },
+  {
+   "fieldname": "amc_rate",
+   "fieldtype": "Currency",
+   "label": "Rate",
+   "options": "currency"
+  },
+  {
+   "fieldname": "column_break_7pfa",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "amc_uom",
+   "fieldtype": "Select",
+   "label": "UOM",
+   "options": "Month\nYear"
+  },
+  {
+   "fieldname": "amc_amount",
+   "fieldtype": "Currency",
+   "label": "Amount",
+   "options": "currency"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-08-21 13:40:44.762243",
+ "modified": "2024-09-17 13:58:31.471753",
  "modified_by": "Administrator",
  "module": "Project Management",
  "name": "Project Requirement",
