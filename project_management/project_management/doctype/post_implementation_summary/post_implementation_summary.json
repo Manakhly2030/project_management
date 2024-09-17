@@ -12,6 +12,7 @@
   "column_break_13",
   "date_of_handover",
   "project",
+  "task",
   "handed_over_to",
   "project_details_section",
   "project_owner",
@@ -297,11 +298,17 @@
    "fieldname": "empty_google_drive_screenshot",
    "fieldtype": "Attach Image",
    "label": "Empty Google Drive Screenshot"
+  },
+  {
+   "fieldname": "task",
+   "fieldtype": "Link",
+   "label": "Task",
+   "options": "Task"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-08-21 13:54:15.608660",
+ "modified": "2024-09-17 18:25:09.105994",
  "modified_by": "Administrator",
  "module": "Project Management",
  "name": "Post Implementation Summary",

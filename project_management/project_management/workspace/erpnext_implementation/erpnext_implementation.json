@@ -1,0 +1,268 @@
+{
+ "charts": [
+  {
+   "chart_name": "Project Summary",
+   "label": "Project Summary"
+  }
+ ],
+ "content": "[{\"id\":\"pi8adMs8_v\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Project Summary\",\"col\":12}},{\"id\":\"xuiLlwFwgy\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"dzBWsorvMk\",\"type\":\"paragraph\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span><br>\",\"col\":12}},{\"id\":\"4QBHL-5VKb\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Project Requirement\",\"col\":3}},{\"id\":\"jT8endajQv\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Project\",\"col\":3}},{\"id\":\"NQzPWipbl-\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Task\",\"col\":3}},{\"id\":\"WilbCGYf-9\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Project Task Summary\",\"col\":3}},{\"id\":\"HSWtwrA1QD\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"F6lpDX_wOa\",\"type\":\"paragraph\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports &amp; Masters</b></span>\",\"col\":12}},{\"id\":\"aYyQWOFBkI\",\"type\":\"card\",\"data\":{\"card_name\":\"Actions\",\"col\":4}},{\"id\":\"EuU-dLraHB\",\"type\":\"card\",\"data\":{\"card_name\":\"Sign Off\",\"col\":4}},{\"id\":\"jnZJ0SV82T\",\"type\":\"card\",\"data\":{\"card_name\":\"On Completion\",\"col\":4}},{\"id\":\"rvqiGzfLu2\",\"type\":\"card\",\"data\":{\"card_name\":\"Settings\",\"col\":4}},{\"id\":\"QGuMCVZSNn\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}}]",
+ "creation": "2024-09-17 18:08:33.444236",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "project-2",
+ "idx": 0,
+ "indicator_color": "",
+ "is_hidden": 0,
+ "label": "ERPNext Implementation",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Settings",
+   "link_count": 1,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Projects Settings",
+   "link_count": 0,
+   "link_to": "Projects Settings",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "description": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Sign Off",
+   "link_count": 4,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Change Request Sign Off",
+   "link_count": 0,
+   "link_to": "Change Request Sign Off",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Training Sign Off",
+   "link_count": 0,
+   "link_to": "Training Sign Off",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "User Acceptance Testing Sign Off",
+   "link_count": 0,
+   "link_to": "User Acceptance Testing Sign Off",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Go Live Sign Off",
+   "link_count": 0,
+   "link_to": "Go Live Sign Off",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Reports",
+   "link_count": 1,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Project Task Summary",
+   "link_count": 0,
+   "link_to": "Project Task Summary",
+   "link_type": "Report",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "On Completion",
+   "link_count": 1,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Customer Feedback",
+   "link_count": 0,
+   "link_to": "Customer Feedback",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Actions",
+   "link_count": 8,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Project Requirement",
+   "link_count": 0,
+   "link_to": "Project Requirement",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Quotation",
+   "link_count": 0,
+   "link_to": "Quotation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Sales Order",
+   "link_count": 0,
+   "link_to": "Sales Order",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Project",
+   "link_count": 0,
+   "link_to": "Project",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Task",
+   "link_count": 0,
+   "link_to": "Task",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Meeting Note",
+   "link_count": 0,
+   "link_to": "Meeting Note",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Change Request",
+   "link_count": 0,
+   "link_to": "Change Request",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Post Implementation Summary",
+   "link_count": 0,
+   "link_to": "Post Implementation Summary",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2024-09-17 18:19:50.768025",
+ "modified_by": "Administrator",
+ "module": "Project Management",
+ "name": "ERPNext Implementation",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 15.0,
+ "shortcuts": [
+  {
+   "color": "Orange",
+   "doc_view": "List",
+   "format": "{} Open",
+   "label": "Project Requirement",
+   "link_to": "Project Requirement",
+   "stats_filter": "[[\"Project Requirement\",\"status\",\"=\",\"Open\",false]]",
+   "type": "DocType"
+  },
+  {
+   "color": "Orange",
+   "doc_view": "List",
+   "format": "{} Open",
+   "label": "Project",
+   "link_to": "Project",
+   "stats_filter": "[[\"Project\",\"status\",\"=\",\"Open\",false]]",
+   "type": "DocType"
+  },
+  {
+   "color": "Orange",
+   "doc_view": "List",
+   "format": "{} Open",
+   "label": "Task",
+   "link_to": "Task",
+   "stats_filter": "[[\"Task\",\"status\",\"=\",\"Open\",false]]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "format": "{} ",
+   "label": "Project Task Summary",
+   "link_to": "Project Task Summary",
+   "stats_filter": "[]",
+   "type": "Report"
+  }
+ ],
+ "title": "ERPNext Implementation"
+}

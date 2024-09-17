@@ -1,0 +1,298 @@
+[
+ {
+  "description": "Assets",
+  "docstatus": 0,
+  "doctype": "Implementation Module",
+  "modified": "2024-09-17 12:06:32.082996",
+  "module_name": "Assets",
+  "name": "Assets"
+ },
+ {
+  "description": "Automation",
+  "docstatus": 0,
+  "doctype": "Implementation Module",
+  "modified": "2024-09-17 12:06:32.089688",
+  "module_name": "Automation",
+  "name": "Automation"
+ },
+ {
+  "description": "Bulk Transaction",
+  "docstatus": 0,
+  "doctype": "Implementation Module",
+  "modified": "2024-09-17 12:06:32.097645",
+  "module_name": "Bulk Transaction",
+  "name": "Bulk Transaction"
+ },
+ {
+  "description": "Buying",
+  "docstatus": 0,
+  "doctype": "Implementation Module",
+  "modified": "2024-09-17 12:06:32.104554",
+  "module_name": "Buying",
+  "name": "Buying"
+ },
+ {
+  "description": "Communication",
+  "docstatus": 0,
+  "doctype": "Implementation Module",
+  "modified": "2024-09-17 12:06:32.112894",
+  "module_name": "Communication",
+  "name": "Communication"
+ },
+ {
+  "description": "Contacts",
+  "docstatus": 0,
+  "doctype": "Implementation Module",
+  "modified": "2024-09-17 12:06:32.121247",
+  "module_name": "Contacts",
+  "name": "Contacts"
+ },
+ {
+  "description": "Core",
+  "docstatus": 0,
+  "doctype": "Implementation Module",
+  "modified": "2024-09-17 12:06:32.129243",
+  "module_name": "Core",
+  "name": "Core"
+ },
+ {
+  "description": "CRM",
+  "docstatus": 0,
+  "doctype": "Implementation Module",
+  "modified": "2024-09-17 12:06:32.136631",
+  "module_name": "CRM",
+  "name": "CRM"
+ },
+ {
+  "description": "Custom",
+  "docstatus": 0,
+  "doctype": "Implementation Module",
+  "modified": "2024-09-17 12:06:32.145334",
+  "module_name": "Custom",
+  "name": "Custom"
+ },
+ {
+  "description": "Desk",
+  "docstatus": 0,
+  "doctype": "Implementation Module",
+  "modified": "2024-09-17 12:06:32.153808",
+  "module_name": "Desk",
+  "name": "Desk"
+ },
+ {
+  "description": "Email",
+  "docstatus": 0,
+  "doctype": "Implementation Module",
+  "modified": "2024-09-17 12:06:32.170241",
+  "module_name": "Email",
+  "name": "Email"
+ },
+ {
+  "description": "ERPNext Integrations",
+  "docstatus": 0,
+  "doctype": "Implementation Module",
+  "modified": "2024-09-17 12:06:32.179704",
+  "module_name": "ERPNext Integrations",
+  "name": "ERPNext Integrations"
+ },
+ {
+  "description": "ERPNext Price Estimation",
+  "docstatus": 0,
+  "doctype": "Implementation Module",
+  "modified": "2024-09-17 12:06:32.186013",
+  "module_name": "ERPNext Price Estimation",
+  "name": "ERPNext Price Estimation"
+ },
+ {
+  "description": "Geo",
+  "docstatus": 0,
+  "doctype": "Implementation Module",
+  "modified": "2024-09-17 12:06:32.198395",
+  "module_name": "Geo",
+  "name": "Geo"
+ },
+ {
+  "description": "Healthcare",
+  "docstatus": 0,
+  "doctype": "Implementation Module",
+  "modified": "2024-09-17 12:06:32.204444",
+  "module_name": "Healthcare",
+  "name": "Healthcare"
+ },
+ {
+  "description": "HR",
+  "docstatus": 0,
+  "doctype": "Implementation Module",
+  "modified": "2024-09-17 12:06:32.215410",
+  "module_name": "HR",
+  "name": "HR"
+ },
+ {
+  "description": "Integrations",
+  "docstatus": 0,
+  "doctype": "Implementation Module",
+  "modified": "2024-09-17 12:06:32.223307",
+  "module_name": "Integrations",
+  "name": "Integrations"
+ },
+ {
+  "description": "Maintenance",
+  "docstatus": 0,
+  "doctype": "Implementation Module",
+  "modified": "2024-09-17 12:06:32.232773",
+  "module_name": "Maintenance",
+  "name": "Maintenance"
+ },
+ {
+  "description": "Manufacturing",
+  "docstatus": 0,
+  "doctype": "Implementation Module",
+  "modified": "2024-09-17 12:06:32.238534",
+  "module_name": "Manufacturing",
+  "name": "Manufacturing"
+ },
+ {
+  "description": "Payroll",
+  "docstatus": 0,
+  "doctype": "Implementation Module",
+  "modified": "2024-09-17 12:06:32.248739",
+  "module_name": "Payroll",
+  "name": "Payroll"
+ },
+ {
+  "description": "Portal",
+  "docstatus": 0,
+  "doctype": "Implementation Module",
+  "modified": "2024-09-17 12:06:32.256501",
+  "module_name": "Portal",
+  "name": "Portal"
+ },
+ {
+  "description": "Printing",
+  "docstatus": 0,
+  "doctype": "Implementation Module",
+  "modified": "2024-09-17 12:06:32.265820",
+  "module_name": "Printing",
+  "name": "Printing"
+ },
+ {
+  "description": "Projects",
+  "docstatus": 0,
+  "doctype": "Implementation Module",
+  "modified": "2024-09-17 12:06:32.272738",
+  "module_name": "Projects",
+  "name": "Projects"
+ },
+ {
+  "description": "Quality Management",
+  "docstatus": 0,
+  "doctype": "Implementation Module",
+  "modified": "2024-09-17 12:06:32.282365",
+  "module_name": "Quality Management",
+  "name": "Quality Management"
+ },
+ {
+  "description": "Regional",
+  "docstatus": 0,
+  "doctype": "Implementation Module",
+  "modified": "2024-09-17 12:06:32.288527",
+  "module_name": "Regional",
+  "name": "Regional"
+ },
+ {
+  "description": "Selling",
+  "docstatus": 0,
+  "doctype": "Implementation Module",
+  "modified": "2024-09-17 12:06:32.298601",
+  "module_name": "Selling",
+  "name": "Selling"
+ },
+ {
+  "description": "Setup",
+  "docstatus": 0,
+  "doctype": "Implementation Module",
+  "modified": "2024-09-17 12:06:32.304533",
+  "module_name": "Setup",
+  "name": "Setup"
+ },
+ {
+  "description": "Social",
+  "docstatus": 0,
+  "doctype": "Implementation Module",
+  "modified": "2024-09-17 12:06:32.315773",
+  "module_name": "Social",
+  "name": "Social"
+ },
+ {
+  "description": "Stock",
+  "docstatus": 0,
+  "doctype": "Implementation Module",
+  "modified": "2024-09-17 12:06:32.321785",
+  "module_name": "Stock",
+  "name": "Stock"
+ },
+ {
+  "description": "Subcontracting",
+  "docstatus": 0,
+  "doctype": "Implementation Module",
+  "modified": "2024-09-17 12:06:32.332558",
+  "module_name": "Subcontracting",
+  "name": "Subcontracting"
+ },
+ {
+  "description": "Support",
+  "docstatus": 0,
+  "doctype": "Implementation Module",
+  "modified": "2024-09-17 12:06:32.339009",
+  "module_name": "Support",
+  "name": "Support"
+ },
+ {
+  "description": "Telephony",
+  "docstatus": 0,
+  "doctype": "Implementation Module",
+  "modified": "2024-09-17 12:06:32.349236",
+  "module_name": "Telephony",
+  "name": "Telephony"
+ },
+ {
+  "description": "Utilities",
+  "docstatus": 0,
+  "doctype": "Implementation Module",
+  "modified": "2024-09-17 12:06:32.356481",
+  "module_name": "Utilities",
+  "name": "Utilities"
+ },
+ {
+  "description": "Website",
+  "docstatus": 0,
+  "doctype": "Implementation Module",
+  "modified": "2024-09-17 12:06:32.367002",
+  "module_name": "Website",
+  "name": "Website"
+ },
+ {
+  "description": "Workflow",
+  "docstatus": 0,
+  "doctype": "Implementation Module",
+  "modified": "2024-09-17 12:06:32.375498",
+  "module_name": "Workflow",
+  "name": "Workflow"
+ },
+ {
+  "description": "Accounts",
+  "docstatus": 0,
+  "doctype": "Implementation Module",
+  "modified": "2024-09-17 12:06:32.067760",
+  "module_name": "Accounts",
+  "name": "Accounts"
+ },
+ {
+  "description": "Education",
+  "docstatus": 0,
+  "doctype": "Implementation Module",
+  "modified": "2024-09-17 12:06:32.163772",
+  "module_name": "Education",
+  "name": "Education"
+ }
+]
