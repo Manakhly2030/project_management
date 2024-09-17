@@ -7,7 +7,7 @@
  "engine": "InnoDB",
  "field_order": [
   "project_details_section",
-  "project_name",
+  "project",
   "frappe_project_manager",
   "task",
   "column_break_4",
@@ -32,12 +32,6 @@
    "fieldname": "project_details_section",
    "fieldtype": "Section Break",
    "label": "Project Details"
-  },
-  {
-   "fieldname": "project_name",
-   "fieldtype": "Link",
-   "label": "Project Name",
-   "options": "Project"
   },
   {
    "fetch_from": "project_name.project_owner",
@@ -132,11 +126,17 @@
    "fieldtype": "Link",
    "label": "Task",
    "options": "Task"
+  },
+  {
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "label": "Project Name",
+   "options": "Project"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-09-17 12:42:12.550449",
+ "modified": "2024-09-17 20:26:13.002902",
  "modified_by": "Administrator",
  "module": "Project Management",
  "name": "Training Sign Off",

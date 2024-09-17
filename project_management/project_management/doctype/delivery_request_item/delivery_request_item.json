@@ -6,21 +6,21 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "delivery_request",
+  "change_request",
   "request_title",
   "delivery_team",
   "order_status"
  ],
  "fields": [
   {
-   "fieldname": "delivery_request",
+   "fieldname": "change_request",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Delivery Request",
-   "options": "Delivery Request"
+   "label": "Change Request",
+   "options": "Change Request"
   },
   {
-   "fetch_from": "delivery_request.title",
+   "fetch_from": "change_request.title",
    "fieldname": "request_title",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -28,7 +28,7 @@
    "read_only": 1
   },
   {
-   "fetch_from": "delivery_request.delivery_team",
+   "fetch_from": "change_request.delivery_team",
    "fieldname": "delivery_team",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -36,7 +36,7 @@
    "read_only": 1
   },
   {
-   "fetch_from": "delivery_request.status",
+   "fetch_from": "change_request.status",
    "fieldname": "order_status",
    "fieldtype": "Data",
    "in_list_view": 1,

@@ -8,7 +8,7 @@
   "requirement",
   "status",
   "assigned_to",
-  "delivery_request",
+  "change_request",
   "estimated_time",
   "column_break_4",
   "delivery_priority",
@@ -42,10 +42,10 @@
   },
   {
    "description": "Should be linked only if customer is Converted",
-   "fieldname": "delivery_request",
+   "fieldname": "change_request",
    "fieldtype": "Link",
-   "label": "Delivery Request",
-   "options": "Delivery Request"
+   "label": "Change Request",
+   "options": "Change Request"
   },
   {
    "fieldname": "estimated_time",

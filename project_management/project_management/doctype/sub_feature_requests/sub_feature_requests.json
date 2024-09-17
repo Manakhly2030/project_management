@@ -5,18 +5,18 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "feature_request",
+  "change_request",
   "status",
   "priority",
   "price_estimate"
  ],
  "fields": [
   {
-   "fieldname": "feature_request",
+   "fieldname": "change_request",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Feature Request",
-   "options": "Feature Request",
+   "label": "Change Request",
+   "options": "Change Request",
    "reqd": 1
   },
   {

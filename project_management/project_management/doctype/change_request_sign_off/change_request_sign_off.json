@@ -8,7 +8,7 @@
  "engine": "InnoDB",
  "field_order": [
   "project_details_section",
-  "project_name",
+  "project",
   "frappe_project_manager",
   "task",
   "column_break_4",
@@ -33,12 +33,6 @@
    "fieldname": "project_details_section",
    "fieldtype": "Section Break",
    "label": "Project Details"
-  },
-  {
-   "fieldname": "project_name",
-   "fieldtype": "Link",
-   "label": "Project Name",
-   "options": "Project"
   },
   {
    "fetch_from": "project_name.project_owner",
@@ -133,11 +127,17 @@
    "fieldname": "client_signature_date",
    "fieldtype": "Date",
    "label": "Client Signature Date"
+  },
+  {
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "label": "Project Name",
+   "options": "Project"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-09-17 17:30:46.874756",
+ "modified": "2024-09-17 20:27:22.111864",
  "modified_by": "Administrator",
  "module": "Project Management",
  "name": "Change Request Sign Off",
