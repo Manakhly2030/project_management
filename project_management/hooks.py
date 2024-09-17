@@ -21,6 +21,12 @@ app_license = "mit"
 # 	}
 # ]
 
+fixtures = [
+    "Estimation Process",
+    "Estimation Document",
+    "Implementation Module"
+]
+
 # Includes in <head>
 # ------------------
 
