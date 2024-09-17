@@ -11,6 +11,7 @@
   "html_2",
   "project_details_section",
   "project_name",
+  "task",
   "frappe_project_manager",
   "column_break_6",
   "customer",
@@ -154,11 +155,17 @@
    "fieldname": "client_signature_date",
    "fieldtype": "Date",
    "label": "Client Signature Date"
+  },
+  {
+   "fieldname": "task",
+   "fieldtype": "Link",
+   "label": "Task",
+   "options": "Task"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-08-21 14:04:46.147193",
+ "modified": "2024-09-17 18:24:18.915860",
  "modified_by": "Administrator",
  "module": "Project Management",
  "name": "Go Live Sign Off",

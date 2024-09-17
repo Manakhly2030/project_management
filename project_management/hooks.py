@@ -21,11 +21,6 @@ app_license = "mit"
 # 	}
 # ]
 
-fixtures = [
-    "Estimation Process",
-    "Estimation Document",
-    "Implementation Module"
-]
 
 # Includes in <head>
 # ------------------
@@ -155,19 +150,23 @@ doctype_list_js = {"Task" : "public/js/task_list.js"}
 # ---------------
 # Hook on document methods and events
 fixtures = [
-    {"dt":"Custom Field",
-    "filters":[
-        ["name","in",
-            [
-                "Projects Settings-custom_working_timeline_",
-                "Projects Settings-custom_working_hours",
-                "Projects Settings-custom_working_settings",
-            ]
+    {
+        "dt":"Custom Field",
+        "filters":[
+            ["name","in",
+                [
+                    "Projects Settings-custom_working_timeline_",
+                    "Projects Settings-custom_working_hours",
+                    "Projects Settings-custom_working_settings",
+                ]
 
+            ]
         ]
-    ]
     
-}
+    },
+    "Estimation Process",
+    "Estimation Document",
+    "Implementation Module"
 
 ]
 doc_events = {
