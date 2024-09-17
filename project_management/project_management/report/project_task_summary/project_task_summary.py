@@ -159,7 +159,7 @@ def get_data(filters):
 		leaf_data=get_root_leaf_task(task.get("name"),1,filters)
 		if leaf_data:
 			task["bold"] =1
-			task["progress"] = sum(progress.get("progress") or 0 for progress  in leaf_data )/len(leaf_data)
+			task["progress"] = round(sum(progress.get("progress") or 0 for progress  in leaf_data )/len(leaf_data),2)
 		else:
 			task["bold"] =0
 		data.append(task)
@@ -230,7 +230,7 @@ def get_root_leaf_task(task,indent,filters):
 		leaf_data=get_root_leaf_task(task_val.get("name"),indent,filters)
 		if leaf_data:
 			task_val["bold"] =1
-			task_val["progress"] = sum(progress.get("progress") or 0 for progress  in leaf_data )/len(leaf_data)
+			task_val["progress"] = round(sum(progress.get("progress") or 0 for progress  in leaf_data )/len(leaf_data) ,2)
 		else:
 			task_val["bold"] =0
 
