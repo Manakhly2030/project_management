@@ -198,9 +198,11 @@ frappe.query_reports["Project Task Summary"] = {
 				},
 			],
 			primary_action: function () {
+				debugger
 				var data = d.get_values();
 				value=data.documents
-				value=(value.toLowerCase()).replace(" ", "-");
+				value=(value.toLowerCase()).replaceAll(" ", "-");
+				console.log(value)
 				window.open(`/app/${value}/new-${value}-new?task=${task_name}&project=${frappe.query_report.get_filter_value("project")}`, "_blank");
 			},
 			primary_action_label: __("Create"),
@@ -211,7 +213,10 @@ frappe.query_reports["Project Task Summary"] = {
 	else{
 		value=value[0]
 		if (value){
-			value=(value.toLowerCase()).replace(" ", "-");
+			debugger
+			console.log(value)
+			value=(value.toLowerCase()).replaceAll(" ", "-");
+			console.log(value)
 			window.open(`/app/${value}/new-${value}-new?task=${task_name}`, "_blank");
 		}
 	}
