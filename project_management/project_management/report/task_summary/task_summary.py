@@ -10,7 +10,6 @@ def execute(filters=None):
 	
 
 	report_summary = get_report_summary(data)
-	print(data)
 	return columns, data ,None,None,report_summary
 def get_columns():
 	columns = [
@@ -88,6 +87,32 @@ def get_columns():
 			"options": "Project",
 			"width": 150,
 		},
+		{
+			"label": _("Task Type"),
+			"fieldtype": "Link",
+			"fieldname": "type",
+			"options": "Task Type",
+			"width": 150,
+		},
+		{
+			"label": _("Action"),
+			"fieldtype": "Data",
+			"fieldname": "action",
+			"width": 100,
+		},
+		{
+			"label": _("Associated Doctype"),
+			"fieldtype": "Link",
+			"fieldname": "associated_doctype",
+			"options": "Doctype",
+			"width": 150,
+		},
+		{
+			"label": _("Associated Docnames"),
+			"fieldtype": "data",
+			"fieldname": "associated_docname",
+			"width": 150,
+		}
 	]
 	return columns
 def get_data(filters):
@@ -99,27 +124,31 @@ def get_data(filters):
 	my_task_user=None
 	data=[]
 	task_data=frappe.db.sql("""select 
-							name,
-							progress,
-							exp_start_date,
-							exp_end_date,
-							act_start_date,
-							act_end_date,
-							status,
-						 expected_time,
-						 	 CAST(DATEDIFF(CURDATE(), exp_end_date)AS CHAR) as ageing,
-						 	project,
-						 	subject,
-						 custom_expected_start_time,
-							custom_expected_end_time,
-						 _assign,
+							t.name,
+							t.progress,
+							t.exp_start_date,
+							t.exp_end_date,
+							t.act_start_date,
+							t.act_end_date,
+							t.status,
+						 	t.type,
+						 t.expected_time,
+						 	 CAST(DATEDIFF(CURDATE(), t.exp_end_date)AS CHAR) as ageing,
+						 	t.project,
+						 	t.subject,
+						 	tt.custom_is_action_required,
+						 	if (tt.custom_is_action_required =1,tt.custom_associated_doctype,"") as associated_doctype,
+						 	tt.custom_associated_doctype as action,
+						 t.custom_expected_start_time,
+							t.custom_expected_end_time,
+						 t._assign,
 						0.0 as indent
-					from `tabTask` 
-				
+					from `tabTask`  as t
+					left join `tabTask Type`as tt  on tt.name = t.type
 					where 
-							parent_task is Null
+							t.parent_task is Null
 						 and
-						 is_template=0
+						 t.is_template=0
 						 {0}
 						 {1}
 						 {2}
@@ -128,13 +157,13 @@ def get_data(filters):
 						 
 							
 							
-			""".format((f"and  project ='{project_f}'"),
-			  (f"and  company ='{company}'"),
-			  (f"and name ='{task_f}'" if task_f else ''),											 
-			f"  and exp_start_date is not Null and  exp_start_date != 0.0  and exp_start_date >= '{from_date}'  " if from_date else "",
-				f"and exp_end_date is not Null  and exp_end_date !=0.0  and exp_end_date <= '{to_date} '" if to_date else "",
+			""".format((f"and  t.project ='{project_f}'"),
+			  (f"and  t.company ='{company}'"),
+			  (f"and t.name ='{task_f}'" if task_f else ''),											 
+			f"  and t.exp_start_date is not Null and  t.exp_start_date != 0.0  and t.exp_start_date >= '{from_date}'  " if from_date else "",
+				f"and t.exp_end_date is not Null  and t.exp_end_date !=0.0  and t.exp_end_date <= '{to_date} '" if to_date else "",
 
-				),as_dict=1,debug=1)
+				),as_dict=1)
 	for task in task_data:
 		leaf_data=get_root_leaf_task(task.get("name"),1,filters)
 		if leaf_data:
@@ -144,57 +173,11 @@ def get_data(filters):
 			task["bold"] =0
 		data.append(task)
 		data=data+leaf_data
-	if not project_f:
-		task_data=frappe.db.sql("""select 
-								name,
-								progress,
-								exp_start_date,
-								exp_end_date,
-								act_start_date,
-								act_end_date,
-						  expected_time,
-								status,
-						  		subject,
-						  custom_expected_start_time,
-							custom_expected_end_time,
-						  _assign,
-						 CAST(DATEDIFF(exp_end_date,CURDATE())AS CHAR) as ageing,
-							0.0 as indent
-						from `tabTask` 
-					
-						where 
-								parent_task is Null
-						  		and is_template=0
-								and project is Null
-								{0}
-								{1}
-						  		{2}
-						  		{3}
-								
-				""".format(
-					(f"and name ='{task_f}'" if task_f else ''),
-					f"and  company ='{company}'",
-				f"  and exp_start_date is not Null and  exp_start_date !=0.0 and exp_start_date >= '{from_date}'  " if from_date else "",
-				f"and exp_end_date is not Null  and exp_end_date !=0.0  and exp_end_date <= '{to_date} '" if to_date else "",
-				),as_dict=1,debug=1)
-		for task in task_data:
-			leaf_data=get_root_leaf_task(task.get("name"),1,filters)
-			if leaf_data:
-				task["bold"] =1
-				task["progress"] = sum(progress.get("progress") or 0 for progress  in leaf_data )/len(leaf_data)
-			else:
-				task["bold"] =0
-			
-			data.append(task)
-
-			data=data+leaf_data
 	if filters.show_my_tasks==1:
 		new_data=[]
 		for task in data:
 			user = frappe.session.user
-			print("_assign",task.get("_assign"))
 			if task.get("_assign") and  user in json.loads(task.get("_assign")):
-				print(json.loads(task.get("_assign")))
 				new_data.append(task)
 		data=new_data
 	for task in data:
@@ -206,40 +189,47 @@ def get_data(filters):
 			task["exp_end_date"] = str(task["exp_end_date"])+" "+str(task.get("custom_expected_end_time"))
 	return data
 def get_root_leaf_task(task,indent,filters):
+	project_f=filters.get("project")
 	from_date=filters.get("from_date")
 	to_date=filters.get("to_date")
 	company=filters.get("company")
-	my_task_user=frappe.session.user_email if filters.get("show_my_tasks") else None
 	ex_task_data=frappe.db.sql("""select 
-								name,
-								progress,
-								exp_start_date,
-								exp_end_date,
-								act_start_date,
-								act_end_date,
-								status,
-								subject,
-							expected_time,
-							custom_expected_start_time,
-							custom_expected_end_time,
-							_assign,
-							CAST(DATEDIFF(CURDATE(), exp_end_date)AS CHAR) as ageing,
+								t.name,
+								t.progress,
+								t.exp_start_date,
+								t.exp_end_date,
+								t.act_start_date,
+								t.act_end_date,
+								t.project,
+								t.status,
+								t.type,
+								t.subject,
+								tt.custom_is_action_required,
+								if (tt.custom_is_action_required =1,tt.custom_associated_doctype,"") as associated_doctype,
+								 if (tt.custom_is_action_required =1,tt.custom_associated_doctype,"")as action,
+							t.expected_time,
+							t.custom_expected_start_time,
+							t.custom_expected_end_time,
+							t._assign,
+							CAST(DATEDIFF(CURDATE(), t.exp_end_date)AS CHAR) as ageing,
 							
 							{0} as indent
-						from `tabTask` 
-						where parent_task = '{1}'
-						and is_template=0
+						from `tabTask` as t
+						left join `tabTask Type` as tt  on tt.name = t.type
+						where t.parent_task = '{1}'
+						and t.is_template=0
 						{2}
 						{3}
 						{4}
-						
+						{5}
 						
 				""".format(indent,task,
 			   
-			f"  and exp_start_date is not Null and  exp_start_date !=0.0 and exp_start_date >= '{from_date}'  " if from_date else "",
-				f"and exp_end_date is not Null  and exp_end_date !=0.0  and exp_end_date <= '{to_date} '" if to_date else "",
-				f"and  company ='{company}'"
-				),as_dict=1,debug=1)
+			f"  and t.exp_start_date is not Null and  t.exp_start_date !=0.0 and t.exp_start_date >= '{from_date}'  " if from_date else "",
+				f"and t.exp_end_date is not Null  and t.exp_end_date !=0.0  and t.exp_end_date <= '{to_date} '" if to_date else "",
+				f"and  company ='{company}'",
+				f"and project = '{project_f}'"
+				),as_dict=1)
 
 	indent=indent+1
 	data=[]
@@ -282,19 +272,19 @@ def get_report_summary(data):
 		{
 			"value": total,
 			"indicator": "Blue",
-			"label": _("Total Tasks"),
+			"label": _("Total"),
 			"datatype": "Int",
 		},
 		{
 			"value": completed,
 			"indicator": "Green",
-			"label": _("Completed Tasks"),
+			"label": _("Completed"),
 			"datatype": "Int",
 		},
 		{
 			"value": total_overdue,
 			"indicator": "Green" if total_overdue == 0 else "Red",
-			"label": _("Overdue Tasks"),
+			"label": _("Overdue"),
 			"datatype": "Int",
 		},
 	]

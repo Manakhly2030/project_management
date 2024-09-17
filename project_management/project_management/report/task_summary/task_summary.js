@@ -99,9 +99,8 @@ frappe.query_reports["Task Summary"] = {
 		
 		if (data["bold"] ==1) {
 			value=value.bold()
-			console.log(value)
 		}
-		if (column["fieldname"] =="status")
+		if (column["fieldname"] =="status" || column["fieldname"] == "ageing")
 		{
 		
 				
@@ -126,6 +125,32 @@ frappe.query_reports["Task Summary"] = {
 			
 
 		}
+		
+	}
+	if (column["fieldname"] == "action"){
+		if (value){
+			var task_name=data["name"]
+			
+			
+			value = `<button class="btn btn-default btn-xs" style=" cursor: pointer" onclick="frappe.query_reports['Task Summary'].creat_action('${value}','${task_name}')">Action</button>`;
+			
+		}
+		else{
+		value =""
+		}
+
+	}
+	if (column["fieldname"] == "associated_docname"){
+		if (data["associated_doctype"]){
+			var dt=data["associated_doctype"]
+			var task_f=data["name"]
+			value = `<button class="btn btn-default btn-xs" style=" cursor: pointer" onclick="frappe.query_reports['Task Summary'].show_list('${dt}','${task_f}')">Show</button>`;
+
+		}
+		else{
+			value = ""
+		}
+
 	}
 		return value;
 	},
@@ -136,7 +161,7 @@ frappe.query_reports["Task Summary"] = {
 			show_my_tasks=frappe.query_report.get_filter_value("show_my_tasks") 
 			from_date=frappe.query_report.get_filter_value("from_date") 
 			to_date=frappe.query_report.get_filter_value("to_date") 
-
+			frappe.open_in_new_tab = true;
 			if (show_my_tasks){
 				show_my_tasks=frappe.session.user
 				frappe.set_route(['List', 'Task', 'Gantt',{"company":company,"project":project,
@@ -156,5 +181,18 @@ frappe.query_reports["Task Summary"] = {
 			}
 
 		})
+	},
+	creat_action:function(value,task_name){
+		if (value){
+			value=(value.toLowerCase()).replace(" ", "-");
+			window.open(`/app/${value}/new-${value}-new?task=${task_name}`, "_blank");
+		}
+	},
+	show_list:function(doctype,task_name)
+	{
+		frappe.open_in_new_tab = true;
+		frappe.set_route(['List',doctype,{task:task_name}])
+
 	}
+
 };

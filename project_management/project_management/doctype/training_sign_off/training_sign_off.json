@@ -9,6 +9,7 @@
   "project_details_section",
   "project_name",
   "frappe_project_manager",
+  "task",
   "column_break_4",
   "customer",
   "customer_project_champion",
@@ -125,11 +126,17 @@
    "fieldname": "client_signature_date",
    "fieldtype": "Date",
    "label": "Client Signature Date"
+  },
+  {
+   "fieldname": "task",
+   "fieldtype": "Link",
+   "label": "Task",
+   "options": "Task"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-08-21 13:57:17.154161",
+ "modified": "2024-09-17 12:42:12.550449",
  "modified_by": "Administrator",
  "module": "Project Management",
  "name": "Training Sign Off",

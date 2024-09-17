@@ -14,6 +14,7 @@
   "customer",
   "created_by",
   "notify_user_by_email",
+  "task",
   "column_break_7",
   "from_date",
   "to_date",
@@ -139,11 +140,17 @@
    "fieldname": "footer",
    "fieldtype": "Data",
    "label": "Footer"
+  },
+  {
+   "fieldname": "task",
+   "fieldtype": "Link",
+   "label": "Task",
+   "options": "Task"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-08-21 12:35:01.327822",
+ "modified": "2024-09-17 10:09:19.368841",
  "modified_by": "Administrator",
  "module": "Project Management",
  "name": "Meeting Note",

@@ -1,7 +1,7 @@
 {
  "actions": [],
- "autoname": "DEL-RQ.#####",
- "creation": "2024-09-02 13:21:13.791586",
+ "autoname": "CHA-RQ.#####",
+ "creation": "2024-09-17 12:47:43.701782",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -11,8 +11,10 @@
   "title",
   "reference_document",
   "reference_name",
+  "request_owner",
   "account_manager",
   "project",
+  "product",
   "technical_project_owner",
   "task",
   "module",
@@ -24,6 +26,7 @@
   "backlog_stage",
   "priority",
   "enterprise_project",
+  "dev_team",
   "estimation_section",
   "estimated_hours",
   "estimated_by",
@@ -138,7 +141,7 @@
    "fieldname": "status",
    "fieldtype": "Select",
    "in_standard_filter": 1,
-   "label": "Delivery Request Status",
+   "label": "Status",
    "options": "Requested\nEstimated\nConverted\nPlanned\nUAT\nCompleted\nCancelled\nOn Hold",
    "print_hide": 1,
    "reqd": 1
@@ -316,24 +319,31 @@
    "label": "Test Scneario",
    "mandatory_depends_on": "eval:doc.order_status == \"Converted\"",
    "options": "Test Scenario"
-  }
- ],
- "links": [
-  {
-   "group": "Action",
-   "link_doctype": "Delivery Action",
-   "link_fieldname": "delivery_request"
   },
   {
-   "group": "Task",
-   "link_doctype": "Backlog",
-   "link_fieldname": "reference_name"
+   "fieldname": "request_owner",
+   "fieldtype": "Link",
+   "label": "Request Owner",
+   "options": "User"
+  },
+  {
+   "fieldname": "product",
+   "fieldtype": "Select",
+   "label": "Product",
+   "options": "Frappe Framework\nERPNext\nFrappe Cloud\nSupport App\nFrappe Mobile\nFrappe Books"
+  },
+  {
+   "fieldname": "dev_team",
+   "fieldtype": "Link",
+   "label": "Dev Team",
+   "options": "Dev Team"
   }
  ],
- "modified": "2024-09-17 12:50:44.596355",
+ "links": [],
+ "modified": "2024-09-17 12:59:48.104292",
  "modified_by": "Administrator",
  "module": "Project Management",
- "name": "Delivery Request",
+ "name": "Change Request",
  "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
