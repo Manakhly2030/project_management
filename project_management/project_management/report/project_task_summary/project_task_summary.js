@@ -203,7 +203,7 @@ frappe.query_reports["Project Task Summary"] = {
 				value=(value.toLowerCase()).replace(" ", "-");
 				window.open(`/app/${value}/new-${value}-new?task=${task_name}`, "_blank");
 			},
-			primary_action_label: __("Creat"),
+			primary_action_label: __("Create"),
 
 		})
 		d.show()
