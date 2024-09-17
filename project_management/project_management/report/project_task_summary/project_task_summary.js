@@ -127,10 +127,10 @@ frappe.query_reports["Project Task Summary"] = {
 		
 	}
 	if (column["fieldname"] == "action"){
+		
 		if (value){
+			debugger
 			var task_name=data["name"]
-			
-			
 			value = `<button class="btn btn-default btn-xs" style=" cursor: pointer" onclick="frappe.query_reports['Project Task Summary'].creat_action('${value}','${task_name}')">Action</button>`;
 			
 		}
@@ -140,8 +140,8 @@ frappe.query_reports["Project Task Summary"] = {
 
 	}
 	if (column["fieldname"] == "associated_docname"){
-		if (data["associated_doctype"]){
-			var dt=data["associated_doctype"]
+		if (data["action"]){
+			var dt=data["action"]
 			var task_f=data["name"]
 			value = `<button class="btn btn-default btn-xs" style=" cursor: pointer" onclick="frappe.query_reports['Project Task Summary'].show_list('${dt}','${task_f}')">Show</button>`;
 
@@ -182,15 +182,77 @@ frappe.query_reports["Project Task Summary"] = {
 		})
 	},
 	creat_action:function(value,task_name){
+		
+		var value=value.split(",")
+		if (value.length>1){
+		var d = new frappe.ui.Dialog({
+			title: __("Select The Document Type"),
+			fields: [
+				{
+					label: "Documents",
+					fieldname: "documents",
+					fieldtype: "Select",
+					reqd: 1,
+					options:value.join("\n"),
+					default:value[0]
+				},
+			],
+			primary_action: function () {
+				var data = d.get_values();
+				value=data.documents
+				value=(value.toLowerCase()).replace(" ", "-");
+				window.open(`/app/${value}/new-${value}-new?task=${task_name}`, "_blank");
+			},
+			primary_action_label: __("Creat"),
+
+		})
+		d.show()
+	}
+	else{
+		value=value[0]
 		if (value){
 			value=(value.toLowerCase()).replace(" ", "-");
 			window.open(`/app/${value}/new-${value}-new?task=${task_name}`, "_blank");
 		}
+	}
+		
+		
 	},
 	show_list:function(doctype,task_name)
 	{
-		frappe.open_in_new_tab = true;
-		frappe.set_route(['List',doctype,{task:task_name}])
+		var value=doctype.split(",")
+		if (value.length>1){
+		var d = new frappe.ui.Dialog({
+			title: __("Select The Document Type"),
+			fields: [
+				{
+					label: "Documents",
+					fieldname: "documents",
+					fieldtype: "Select",
+					reqd: 1,
+					options:value.join("\n"),
+					default:value[0]
+				},
+			],
+			primary_action: function () {
+				var data = d.get_values();
+				value=data.documents
+				frappe.open_in_new_tab = true;
+				frappe.set_route(['List',value,{task:task_name}])
+			},
+			primary_action_label: __("Show"),
+
+		})
+		d.show()
+	}
+	else{
+		value=value[0]
+		if (value){
+			frappe.open_in_new_tab = true;
+			frappe.set_route(['List',value,{task:task_name}])
+		}
+	}
+		
 
 	}
 };

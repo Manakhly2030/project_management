@@ -101,15 +101,8 @@ def get_columns():
 			"width": 100,
 		},
 		{
-			"label": _("Associated Doctype"),
-			"fieldtype": "Link",
-			"fieldname": "associated_doctype",
-			"options": "Doctype",
-			"width": 150,
-		},
-		{
 			"label": _("Associated Docnames"),
-			"fieldtype": "data",
+			"fieldtype": "Data",
 			"fieldname": "associated_docname",
 			"width": 150,
 		}
@@ -137,8 +130,6 @@ def get_data(filters):
 						 	t.project,
 						 	t.subject,
 						 	tt.custom_is_action_required,
-						 	if (tt.custom_is_action_required =1,tt.custom_associated_doctype,"") as associated_doctype,
-						 	tt.custom_associated_doctype as action,
 						 t.custom_expected_start_time,
 							t.custom_expected_end_time,
 						 t._assign,
@@ -187,6 +178,10 @@ def get_data(filters):
 			task["exp_start_date"] = str(task["exp_start_date"])+ " "+ str(task.get("custom_expected_start_time"))
 		if task.get("custom_expected_end_time") and task.get("exp_end_date"):
 			task["exp_end_date"] = str(task["exp_end_date"])+" "+str(task.get("custom_expected_end_time"))
+		if task.get("custom_is_action_required"):
+			action_v=(frappe.get_all("Document List",{"parent":task.get("type")},["document_type"],pluck="document_type",order_by ="is_default desc"))
+			if action_v:
+				task["action"] = ",".join(action_v)
 	return data
 def get_root_leaf_task(task,indent,filters):
 	project_f=filters.get("project")
@@ -205,8 +200,6 @@ def get_root_leaf_task(task,indent,filters):
 								t.type,
 								t.subject,
 								tt.custom_is_action_required,
-								if (tt.custom_is_action_required =1,tt.custom_associated_doctype,"") as associated_doctype,
-								 if (tt.custom_is_action_required =1,tt.custom_associated_doctype,"")as action,
 							t.expected_time,
 							t.custom_expected_start_time,
 							t.custom_expected_end_time,
@@ -253,12 +246,15 @@ def get_report_summary(data):
 	total = len(data)
 	total_overdue = 0
 	completed=0
+	total_completion=0
 	for task in  data:
 		if task.get("status") =="Overdue":
 			total_overdue=total_overdue+1
 		elif task.get("status") == "Completed":
 			completed=completed+1
-	avg_completion =completed / total
+		if task.get("progress"):
+			total_completion=total_completion+float(task.get("progress"))
+	avg_completion =total_completion /total
 
 
 
