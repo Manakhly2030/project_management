@@ -8,7 +8,7 @@ import frappe
 from frappe.model.document import Document
 from frappe.utils import formatdate, getdate, today
 from frappe import _, throw
-class Customerholidaylist(Document):
+class CustomerHolidayList(Document):
 	# begin: auto-generated types
 	# This code is auto-generated. Do not modify anything in this block.
 

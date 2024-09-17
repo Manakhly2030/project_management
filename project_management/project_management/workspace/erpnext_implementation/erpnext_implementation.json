@@ -1,4 +1,5 @@
 {
+ "app": "project_management",
  "charts": [
   {
    "chart_name": "Project Summary",
@@ -215,7 +216,7 @@
    "type": "Link"
   }
  ],
- "modified": "2024-09-17 18:19:50.768025",
+ "modified": "2024-09-17 18:40:49.869005",
  "modified_by": "Administrator",
  "module": "Project Management",
  "name": "ERPNext Implementation",
