@@ -1,8 +1,7 @@
 // Copyright (c) 2024, FRAPPE TECHNOLOGIES PRIVATE LIMITED and contributors
 // For license information, please see license.txt
 
-frappe.query_reports["Task Summary"] = {
-	
+frappe.query_reports["Project Task Summary"] = {
 	"filters": [
 		{
 			fieldname: "company",
@@ -98,7 +97,7 @@ frappe.query_reports["Task Summary"] = {
 			}
 		
 		if (data["bold"] ==1) {
-			value=value.bold()
+			value=((value.toString()).bold())
 		}
 		if (column["fieldname"] =="status" || column["fieldname"] == "ageing")
 		{
@@ -132,7 +131,7 @@ frappe.query_reports["Task Summary"] = {
 			var task_name=data["name"]
 			
 			
-			value = `<button class="btn btn-default btn-xs" style=" cursor: pointer" onclick="frappe.query_reports['Task Summary'].creat_action('${value}','${task_name}')">Action</button>`;
+			value = `<button class="btn btn-default btn-xs" style=" cursor: pointer" onclick="frappe.query_reports['Project Task Summary'].creat_action('${value}','${task_name}')">Action</button>`;
 			
 		}
 		else{
@@ -144,7 +143,7 @@ frappe.query_reports["Task Summary"] = {
 		if (data["associated_doctype"]){
 			var dt=data["associated_doctype"]
 			var task_f=data["name"]
-			value = `<button class="btn btn-default btn-xs" style=" cursor: pointer" onclick="frappe.query_reports['Task Summary'].show_list('${dt}','${task_f}')">Show</button>`;
+			value = `<button class="btn btn-default btn-xs" style=" cursor: pointer" onclick="frappe.query_reports['Project Task Summary'].show_list('${dt}','${task_f}')">Show</button>`;
 
 		}
 		else{
@@ -194,5 +193,4 @@ frappe.query_reports["Task Summary"] = {
 		frappe.set_route(['List',doctype,{task:task_name}])
 
 	}
-
 };

@@ -40,13 +40,13 @@ def get_columns():
 			"label": _("Expected Start"),
 			"fieldtype": "Datetime",
 			"fieldname": "exp_start_date",
-			"width": 150,
+			"width": 200,
 		},
 		{
 			"label": _("Expected End"),
 			"fieldtype": "Datetime",
 			"fieldname": "exp_end_date",
-			"width": 150,
+			"width": 200,
 		},
 		{
 			"label": _("Ageing"),

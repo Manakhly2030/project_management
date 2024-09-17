@@ -32,9 +32,9 @@ def task_overlapping(self,method):
 				self.exp_start_date =str(exp_start_date)
 				return task_overlapping(self,"Validate")
 		else:
-			self.custom_expected_start_time=get_working_start_times()
-			if self.custom_expected_start_time:
-				self.custom_expected_start_time=self.custom_expected_start_time[0]
+			custom_expected_start_time=get_working_start_times()
+			if custom_expected_start_time:
+				self.custom_expected_start_time=custom_expected_start_time[0]
 				end_date, end_time=get_end_data_time(self.exp_start_date,self.custom_expected_start_time,self.expected_time,project_doc)
 				if end_date:
 					self.exp_end_date
