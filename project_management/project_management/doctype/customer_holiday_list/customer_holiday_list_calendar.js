@@ -1,4 +1,4 @@
-frappe.views.calendar["Customer holiday list"] ={
+frappe.views.calendar["Customer Holiday List"] ={
     field_map: {
 		start: "holiday_date",
 		end: "holiday_date",

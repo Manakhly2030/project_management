@@ -9,7 +9,7 @@ def execute(filters=None):
 	columns, data = get_columns(), get_data(filters)
 	
 
-	report_summary = get_report_summary(data)
+	report_summary = get_report_summary(data,filters)
 	return columns, data ,None,None,report_summary
 def get_columns():
 	columns = [
@@ -159,7 +159,7 @@ def get_data(filters):
 		leaf_data=get_root_leaf_task(task.get("name"),1,filters)
 		if leaf_data:
 			task["bold"] =1
-			task["progress"] = sum(progress.get("progress") or 0 for progress  in leaf_data )/len(leaf_data)
+			task["progress"] = round(sum(progress.get("progress") or 0 for progress  in leaf_data )/len(leaf_data),2)
 		else:
 			task["bold"] =0
 		data.append(task)
@@ -230,7 +230,7 @@ def get_root_leaf_task(task,indent,filters):
 		leaf_data=get_root_leaf_task(task_val.get("name"),indent,filters)
 		if leaf_data:
 			task_val["bold"] =1
-			task_val["progress"] = sum(progress.get("progress") or 0 for progress  in leaf_data )/len(leaf_data)
+			task_val["progress"] = round(sum(progress.get("progress") or 0 for progress  in leaf_data )/len(leaf_data) ,2)
 		else:
 			task_val["bold"] =0
 
@@ -238,7 +238,7 @@ def get_root_leaf_task(task,indent,filters):
 		data=data+leaf_data
 
 	return data
-def get_report_summary(data):
+def get_report_summary(data,filters):
 	if not data:
 		return None
 
@@ -254,7 +254,7 @@ def get_report_summary(data):
 			completed=completed+1
 		if task.get("progress"):
 			total_completion=total_completion+float(task.get("progress"))
-	avg_completion =total_completion /total
+	avg_completion =frappe.db.get_value("Project",filters.get("project"),"percent_complete")
 
 
 

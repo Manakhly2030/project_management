@@ -1,4 +1,5 @@
 {
+ "app": "project_management",
  "charts": [
   {
    "chart_name": "Project Summary",
