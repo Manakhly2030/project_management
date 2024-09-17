@@ -45,7 +45,7 @@
    "fieldname": "module",
    "fieldtype": "Link",
    "label": "Module",
-   "options": "Module Def"
+   "options": "Implementation Module"
   },
   {
    "fieldname": "other_effort",
@@ -55,7 +55,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-08-21 13:08:53.448361",
+ "modified": "2024-09-17 11:20:51.198913",
  "modified_by": "Administrator",
  "module": "Project Management",
  "name": "Estimation Document",
