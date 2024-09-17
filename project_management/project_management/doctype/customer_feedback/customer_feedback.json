@@ -7,6 +7,7 @@
  "engine": "InnoDB",
  "field_order": [
   "project",
+  "task",
   "customer",
   "rating",
   "feedback"
@@ -36,11 +37,17 @@
    "fieldname": "feedback",
    "fieldtype": "Small Text",
    "label": "Feedback"
+  },
+  {
+   "fieldname": "task",
+   "fieldtype": "Link",
+   "label": "Task",
+   "options": "Task"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-09-17 18:16:56.833743",
+ "modified": "2024-09-17 21:00:45.533391",
  "modified_by": "Administrator",
  "module": "Project Management",
  "name": "Customer Feedback",
