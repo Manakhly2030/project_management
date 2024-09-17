@@ -189,7 +189,7 @@ frappe.query_reports["Project Task Summary"] = {
 			title: __("Select The Document Type"),
 			fields: [
 				{
-					label: "Documents",
+					label: "Document Type",
 					fieldname: "documents",
 					fieldtype: "Select",
 					reqd: 1,
@@ -201,7 +201,7 @@ frappe.query_reports["Project Task Summary"] = {
 				var data = d.get_values();
 				value=data.documents
 				value=(value.toLowerCase()).replace(" ", "-");
-				window.open(`/app/${value}/new-${value}-new?task=${task_name}`, "_blank");
+				window.open(`/app/${value}/new-${value}-new?task=${task_name}&project=${frappe.query_report.get_filter_value("project")}`, "_blank");
 			},
 			primary_action_label: __("Create"),
 

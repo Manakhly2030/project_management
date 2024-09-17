@@ -101,7 +101,7 @@ def get_columns():
 			"width": 100,
 		},
 		{
-			"label": _("Associated Docnames"),
+			"label": _("Associated Documents"),
 			"fieldtype": "Data",
 			"fieldname": "associated_docname",
 			"width": 150,
