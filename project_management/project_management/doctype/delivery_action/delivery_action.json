@@ -6,7 +6,7 @@
  "engine": "InnoDB",
  "field_order": [
   "title",
-  "delivery_request",
+  "change_request",
   "column_break_5",
   "status",
   "approved_by",
@@ -21,7 +21,7 @@
  ],
  "fields": [
   {
-   "fetch_from": "delivery_request.title",
+   "fetch_from": "change_request.title",
    "fetch_if_empty": 1,
    "fieldname": "title",
    "fieldtype": "Data",
@@ -29,11 +29,11 @@
    "label": "Title"
   },
   {
-   "fieldname": "delivery_request",
+   "fieldname": "change_request",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Delivery Request",
-   "options": "Delivery Request",
+   "label": "Change Request",
+   "options": "Change Request",
    "reqd": 1
   },
   {

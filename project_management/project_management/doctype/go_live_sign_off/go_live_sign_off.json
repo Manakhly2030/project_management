@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:project_name",
+ "autoname": "field:project",
  "creation": "2024-08-21 14:04:46.147193",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -10,7 +10,7 @@
   "document_purpose_section",
   "html_2",
   "project_details_section",
-  "project_name",
+  "project",
   "task",
   "frappe_project_manager",
   "column_break_6",
@@ -48,13 +48,6 @@
    "fieldname": "project_details_section",
    "fieldtype": "Section Break",
    "label": "Project Details"
-  },
-  {
-   "fieldname": "project_name",
-   "fieldtype": "Link",
-   "label": "Project Name",
-   "options": "Project",
-   "unique": 1
   },
   {
    "fetch_from": "project_name.project_owner",
@@ -161,11 +154,18 @@
    "fieldtype": "Link",
    "label": "Task",
    "options": "Task"
+  },
+  {
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "label": "Project Name",
+   "options": "Project",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-09-17 18:24:18.915860",
+ "modified": "2024-09-17 20:28:01.195782",
  "modified_by": "Administrator",
  "module": "Project Management",
  "name": "Go Live Sign Off",

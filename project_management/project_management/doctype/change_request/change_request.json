@@ -50,7 +50,35 @@
   "session_notes",
   "section_break_35",
   "signed_off_development",
-  "test_scneario"
+  "section_break_36",
+  "test_scneario",
+  "customer",
+  "product",
+  "developers_estimate",
+  "column_break_5",
+  "impact",
+  "price_estimate_usd",
+  "efforts",
+  "request_value",
+  "pricing_method",
+  "is_epic_task",
+  "column_break_8",
+  "issue",
+  "expected_date",
+  "planned_in_month",
+  "request_type",
+  "loss_deal_cost",
+  "epic_task_details_section",
+  "sub_features",
+  "section_break_9",
+  "details",
+  "user_stories",
+  "section_break_17",
+  "costing",
+  "column_break_28",
+  "feeback_to_requester",
+  "section_break_30",
+  "notes"
  ],
  "fields": [
   {
@@ -337,7 +365,167 @@
    "fieldtype": "Link",
    "label": "Dev Team",
    "options": "Dev Team"
-  }
+  },
+  {
+    "fieldname": "section_break_36",
+    "fieldtype": "Section Break"
+   },
+   {
+    "fieldname": "customer",
+    "fieldtype": "Link",
+    "label": "Customer",
+    "options": "Customer"
+   },
+   {
+    "fieldname": "developers_estimate",
+    "fieldtype": "Select",
+    "label": "Developers Estimate",
+    "options": "\nS - A Day\nM - Half a Week\nL - A Week\nXL - Two Weeks\nXXL - A Month\nXXL+ - More Than A Month"
+   },
+   {
+    "fieldname": "column_break_5",
+    "fieldtype": "Column Break"
+   },
+   {
+    "default": "3",
+    "description": "1 (lowest), 5 (highest)",
+    "fieldname": "impact",
+    "fieldtype": "Select",
+    "in_list_view": 1,
+    "label": "Impact",
+    "options": "1\n2\n3\n4\n5"
+   },
+   {
+    "fieldname": "price_estimate_usd",
+    "fieldtype": "Currency",
+    "hidden": 1,
+    "label": "Price Estimate (USD)",
+    "options": "USD",
+    "print_hide": 1
+   },
+   {
+    "fieldname": "efforts",
+    "fieldtype": "Select",
+    "label": "Efforts",
+    "options": "1\n2\n3\n4\n5"
+   },
+   {
+    "fieldname": "request_value",
+    "fieldtype": "Int",
+    "label": "Request Value",
+    "read_only": 1
+   },
+   {
+    "fieldname": "pricing_method",
+    "fieldtype": "Select",
+    "hidden": 1,
+    "label": "Pricing Method",
+    "options": "Potential Future Value\nLost Sales\nCompetitor Value\nTime Cost Method\nTable stake\nGut-feel\nKnown Missing - No value",
+    "print_hide": 1
+   },
+   {
+    "default": "0",
+    "fieldname": "is_epic_task",
+    "fieldtype": "Check",
+    "label": "Is Epic Task"
+   },
+   {
+    "fieldname": "column_break_8",
+    "fieldtype": "Column Break"
+   },
+   {
+    "fieldname": "issue",
+    "fieldtype": "Link",
+    "label": "Issue",
+    "options": "Issue"
+   },
+   {
+    "fieldname": "expected_date",
+    "fieldtype": "Date",
+    "hidden": 1,
+    "label": "Expected Date"
+   },
+   {
+    "fieldname": "planned_in_month",
+    "fieldtype": "Select",
+    "in_standard_filter": 1,
+    "label": "Planned in Month",
+    "options": "\nJan\nFeb\nMarch\nApr\nMay\nJun\nJuly\nAug\nSept\nOct\nNov\nDec"
+   },
+   {
+    "fieldname": "request_type",
+    "fieldtype": "Select",
+    "label": "Request Type",
+    "options": "New Feature\nExisting Feature Enhancement\nClean-up or Refactoring",
+    "print_hide": 1
+   },
+   {
+    "fieldname": "loss_deal_cost",
+    "fieldtype": "Currency",
+    "hidden": 1,
+    "label": "Loss Deal Cost",
+    "print_hide": 1
+   },
+   {
+    "depends_on": "is_epic_task",
+    "fieldname": "epic_task_details_section",
+    "fieldtype": "Section Break",
+    "label": "Epic Task Details"
+   },
+   {
+    "fieldname": "sub_features",
+    "fieldtype": "Table",
+    "label": "Sub Features",
+    "options": "Sub Feature Requests"
+   },
+   {
+    "fieldname": "section_break_9",
+    "fieldtype": "Section Break"
+   },
+   {
+    "default": "<h3>Problem Statement</h3> <br>\n<h3>Expected Solution</h3> <br>\n<h3>Who is the end user? Define persona(s).</h3> <br>\n<h3>Other details / screenshots / document to elaborate requirement</h3> <br>\n<p>Please ensure to update the values in the field above like Module priority, Lost Opportunity cost, so that we can estimate better.</p>",
+    "fieldname": "details",
+    "fieldtype": "Text Editor",
+    "in_list_view": 1,
+    "label": "Requirement Details",
+    "reqd": 1
+   },
+   {
+    "fieldname": "user_stories",
+    "fieldtype": "Text Editor",
+    "label": "User Stories"
+   },
+   {
+    "fieldname": "section_break_17",
+    "fieldtype": "Section Break"
+   },
+   {
+    "fieldname": "costing",
+    "fieldtype": "Small Text",
+    "label": "Costing"
+   },
+   {
+    "fieldname": "column_break_28",
+    "fieldtype": "Column Break"
+   },
+   {
+    "fieldname": "feeback_to_requester",
+    "fieldtype": "Small Text",
+    "label": "Feeback to Requester"
+   },
+   {
+    "fieldname": "section_break_30",
+    "fieldtype": "Section Break"
+   },
+   {
+    "default": "Notes:\n\n1. Please elaborate on the feature request with an example. If it's coming from the customer/prospect, try and get some specs on the requirement. \n2. We will suggest you create a Feature Request when you have heard of this requirement from multiple sources. Better to avoid suggestions based on demand from just one or two customers.\n3. No need for proposing any solution. The product team can take it up.\n4. The feature request addition to roadmap is subjected to the demand of this feature from a larger community and the availability of resources in the delivery team. We are scaling-up as said.",
+    "fieldname": "notes",
+    "fieldtype": "HTML",
+    "label": "Notes",
+    "options": "<h3>Notes:</h3><br>\n<li>\nPlease elaborate on the feature request with an example. If it's coming from the customer/prospect, try and get some specs on the requirement.</li>\n<li>We will suggest you create a Feature Request when you have heard of this requirement from multiple sources. Better to avoid suggestions based on demand from just one or two customers.</li>\n<li>No need for proposing any solution. The product team can take it up.</li>\n<li>The feature request addition to the roadmap is subjected to the demand of this feature from a larger community and the availability of resources in the delivery team. We are scaling up as said.\n</li>",
+    "print_hide": 1,
+    "read_only": 1
+   }
  ],
  "links": [],
  "modified": "2024-09-17 12:59:48.104292",
