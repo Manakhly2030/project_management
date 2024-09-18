@@ -6,42 +6,58 @@ from erpnext.projects.doctype.project.project import get_holiday_list
 from erpnext.setup.doctype.holiday_list.holiday_list import is_holiday
 from project_management.api import update_if_holiday
 def task_overlapping(self,method):
-	if validate_task_timing_sequence_task(self):
-		filters=get_common_sequence_filters(self.project,self.name)
-		project_doc=frappe.get_doc("Project",self.project)
+	try:
+		if validate_task_timing_sequence_task(self):
+			exp_start_date=datetime.now()
+			exp_end_date=datetime.now()
+			if self.exp_start_date:
+				if self.exp_start_date.endswith('.000000'):
+					self.exp_start_date = self.exp_start_date[:-7]
+				exp_start_date=datetime.strptime(self.exp_start_date, "%Y-%m-%d %H:%M:%S")
+			if self.exp_end_date:
+				if self.exp_end_date.endswith('.000000'):
+					self.exp_end_date = self.exp_end_date[:-7]
+				exp_end_date=datetime.strptime(self.exp_end_date, "%Y-%m-%d %H:%M:%S")
 
-		check_in_between(self,filters,project_doc)
-		already_working_task=check_in_same_date(self,filters)
-		if already_working_task:
-			avl_working_hrs_with_data=is_avl_to_start_on_with_data(self.exp_start_date,already_working_task)
-			if avl_working_hrs_with_data.get("avl_hours"):
-				self.custom_expected_start_time =avl_working_hrs_with_data.get("next_start_time")
-				end_date, end_time=get_end_data_time(self.exp_start_date,avl_working_hrs_with_data.get("next_start_time"),self.expected_time,project_doc)
-				if end_date:
-					self.exp_end_date =end_date
-					if end_time:
-						self.custom_expected_end_time=end_time
-						push_tasks(self)
-						
+			filters=get_common_sequence_filters(self.project,self.name)
+			project_doc=frappe.get_doc("Project",self.project)
+
+			check_in_between(self,filters,project_doc)
+			already_working_task=check_in_same_date(self,filters)
+			if already_working_task:
+				avl_working_hrs_with_data=is_avl_to_start_on_with_data(exp_start_date.date(),already_working_task)
+				if avl_working_hrs_with_data.get("avl_hours"):
+					self.custom_expected_start_time =avl_working_hrs_with_data.get("next_start_time")
+					
+					self.exp_start_date = str(exp_start_date.date())+" "+str(avl_working_hrs_with_data.get("next_start_time"))
+
+					end_date, end_time=get_end_data_time(exp_start_date.date(),avl_working_hrs_with_data.get("next_start_time"),self.expected_time,project_doc)
+					if end_date:
+						self.exp_end_date =str(end_date)+" "+str(end_time)
+						if end_time:
+							self.custom_expected_end_time=end_time
+							push_tasks(self)
+							
+				else:
+					frappe.log_error(title="exp_start_date Can not be "+self.exp_start_date,reference_doctype="Task",reference_name=self.name)
+					
+					exp_start_date=add_days(self.exp_start_date,1)
+					exp_start_date =update_if_holiday(project_doc,exp_start_date)
+					self.exp_start_date =str(exp_start_date)
+					return task_overlapping(self,"Validate")
 			else:
-				frappe.msgprint("exp_start_date Can not be "+self.exp_start_date,)
-				frappe.log_error(title="exp_start_date Can not be "+self.exp_start_date,reference_doctype="Task",reference_name=self.name)
-				
-				exp_start_date=add_days(self.exp_start_date)
-				exp_start_date =update_if_holiday(project_doc,exp_start_date)
-				self.exp_start_date =str(exp_start_date)
-				return task_overlapping(self,"Validate")
-		else:
-			custom_expected_start_time=get_working_start_times()
-			if custom_expected_start_time:
-				self.custom_expected_start_time=custom_expected_start_time[0]
-				end_date, end_time=get_end_data_time(self.exp_start_date,self.custom_expected_start_time,self.expected_time,project_doc)
-				if end_date:
-					self.exp_end_date
-					if end_time:
-						self.custom_expected_end_time=end_time
-						push_tasks(self)
-
+				custom_expected_start_time=get_working_start_times()
+				if custom_expected_start_time:
+					self.custom_expected_start_time=custom_expected_start_time[0]
+					self.exp_start_date = str(exp_start_date.date())+" "+str(custom_expected_start_time[0])
+					end_date, end_time=get_end_data_time(exp_start_date.date(),self.custom_expected_start_time,self.expected_time,project_doc)
+					if end_date:
+						self.exp_end_date =str(end_date)+" "+str(end_time)
+						if end_time:
+							self.custom_expected_end_time=end_time
+							push_tasks(self)
+	except Exception as e:
+		frappe.log_error(title="task_overlapping",reference_doctype="Task",message=frappe.get_traceback(with_context=True),reference_name=self.name)
 
 
 def push_tasks(self):
@@ -54,6 +70,8 @@ def check_and_push(self,filters):
 	for task in already_working_tasks:
 		task_doc=frappe.get_doc("Task",task)
 def get_end_data_time(start_date,start_time,expected_time,project_doc):
+	if not expected_time:
+		expected_time=0
 	remaining_duration = timedelta(hours=expected_time)
 	current_time = start_time
 	current_date = add_days(start_date,0)
@@ -175,7 +193,7 @@ def check_in_between(self,filters,project_doc):
 	filters["exp_start_date"]=["<=",self.exp_start_date]
 	already_working_task=frappe.db.get_value("Task",filters,["exp_end_date","name"],order_by="exp_end_date",as_dict=1)
 	if already_working_task:
-		frappe.msgprint("exp_start_date Can not be "+self.exp_start_date,)
+		
 		frappe.log_error(title="exp_start_date Can not be "+self.exp_start_date,reference_doctype="Task",reference_name=self.name)
 		exp_start_date=add_days(self.exp_start_date,1)
 		exp_start_date =update_if_holiday(project_doc,exp_start_date)
@@ -200,6 +218,7 @@ def is_avl_to_start_on_with_data(date,task,working_hours=None):
 		 "next_start_time":worked_hours_next_statime.get("next_start_time")}
 
 def find_worked_hours_next_start_time_with_end_time(end_time):
+		
 		worked_hours= timedelta(0)
 		all_working_interval=get_all_working_times()
 		for interval in all_working_interval:

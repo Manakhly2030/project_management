@@ -174,10 +174,6 @@ def get_data(filters):
 	for task in data:
 		if task.get("_assign"):
 			task["_assign"] = ",".join(json.loads(task.get("_assign")))
-		if task.get("custom_expected_start_time") and  task.get("exp_start_date"):
-			task["exp_start_date"] = str(task["exp_start_date"])+ " "+ str(task.get("custom_expected_start_time"))
-		if task.get("custom_expected_end_time") and task.get("exp_end_date"):
-			task["exp_end_date"] = str(task["exp_end_date"])+" "+str(task.get("custom_expected_end_time"))
 		if task.get("custom_is_action_required"):
 			action_v=(frappe.get_all("Document List",{"parent":task.get("type")},["document_type"],pluck="document_type",order_by ="is_default desc"))
 			if action_v:
