@@ -11,13 +11,13 @@ def task_overlapping(self,method):
 			exp_start_date=datetime.now()
 			exp_end_date=datetime.now()
 			if self.exp_start_date:
-				if self.exp_start_date.endswith('.000000'):
-					self.exp_start_date = self.exp_start_date[:-7]
-				exp_start_date=datetime.strptime(self.exp_start_date, "%Y-%m-%d %H:%M:%S")
+				if len(str(self.exp_start_date)) ==26:
+					self.exp_start_date = str(self.exp_start_date[:-7])
+				exp_start_date=datetime.strptime(str(self.exp_start_date), "%Y-%m-%d %H:%M:%S")
 			if self.exp_end_date:
-				if self.exp_end_date.endswith('.000000'):
-					self.exp_end_date = self.exp_end_date[:-7]
-				exp_end_date=datetime.strptime(self.exp_end_date, "%Y-%m-%d %H:%M:%S")
+				if len(str(self.exp_end_date)) ==26:
+					self.exp_end_date = str(self.exp_end_date[:-7])
+				exp_end_date=datetime.strptime(str(self.exp_end_date), "%Y-%m-%d %H:%M:%S")
 
 			filters=get_common_sequence_filters(self.project,self.name)
 			project_doc=frappe.get_doc("Project",self.project)
@@ -39,7 +39,7 @@ def task_overlapping(self,method):
 							push_tasks(self)
 							
 				else:
-					frappe.log_error(title="exp_start_date Can not be "+self.exp_start_date,reference_doctype="Task",reference_name=self.name)
+					frappe.log_error(title="exp_start_date Can not be "+str(self.exp_start_date),reference_doctype="Task",reference_name=self.name)
 					
 					exp_start_date=add_days(self.exp_start_date,1)
 					exp_start_date =update_if_holiday(project_doc,exp_start_date)
@@ -69,6 +69,7 @@ def check_and_push(self,filters):
 	already_working_tasks=frappe.db.get_list("Task",filters,["name"],pluck="name",order_by="custom_expected_end_time desc")
 	for task in already_working_tasks:
 		task_doc=frappe.get_doc("Task",task)
+		task_doc.save()
 def get_end_data_time(start_date,start_time,expected_time,project_doc):
 	if not expected_time:
 		expected_time=0
@@ -194,7 +195,7 @@ def check_in_between(self,filters,project_doc):
 	already_working_task=frappe.db.get_value("Task",filters,["exp_end_date","name"],order_by="exp_end_date",as_dict=1)
 	if already_working_task:
 		
-		frappe.log_error(title="exp_start_date Can not be "+self.exp_start_date,reference_doctype="Task",reference_name=self.name)
+		frappe.log_error(title="exp_start_date Can not be "+str(self.exp_start_date),reference_doctype="Task",reference_name=self.name)
 		exp_start_date=add_days(self.exp_start_date,1)
 		exp_start_date =update_if_holiday(project_doc,exp_start_date)
 		self.exp_start_date =str(exp_start_date)
