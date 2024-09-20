@@ -95,6 +95,7 @@ frappe.ui.form.on('Project', {
 				var data=[];
         	        var d = new frappe.ui.Dialog({
         			title: __("Add Multiple Templates"),
+					size:"extra-large",
         			fields: [
         				{
         					label: "Template",
@@ -102,6 +103,7 @@ frappe.ui.form.on('Project', {
         					fieldtype: "Link",
         					options:"Project Template",
         					reqd:1,
+							
 							change: () => {
 								d.fields_dict.template.$input.blur()
 								

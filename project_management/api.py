@@ -5,7 +5,9 @@ from erpnext.projects.doctype.project.project import Project,get_holiday_list
 from frappe.utils import add_days
 from erpnext.setup.doctype.holiday_list.holiday_list import is_holiday
 @frappe.whitelist()
-def get_tasks_from_multiple_template(name,tasks,parent_task=None,):
+def get_tasks_from_multiple_template(name,tasks,parent_task=None,from_task_tree=0):
+    if from_task_tree:
+        name=frappe.db.get_value("Task",name,"project")
     try:
         tasks=json.loads(tasks)
         doc = frappe.get_doc("Project",name)
@@ -18,8 +20,7 @@ def get_tasks_from_multiple_template(name,tasks,parent_task=None,):
             task_doc = doc.create_task_from_template(template_task_details)
             if task.get("start_date"):
                 task_doc.exp_start_date = task.get("start_date")
-            if task.get("end_date"):
-                task_doc.exp_end_date = task.get("end_date")
+                task_doc.exp_end_date = task.get("start_date")                
             if parent_task:
                 task_doc.parent_task=parent_task
             if task.get("expected_time"):
@@ -34,7 +35,9 @@ def get_tasks_from_multiple_template(name,tasks,parent_task=None,):
         frappe.msgprint(_(str(e)))
     return False
 @frappe.whitelist()
-def get_task_value(template,project,as_per,company,custom_start_dates=None):
+def get_task_value(template,project,as_per,company,custom_start_dates=None,from_task_tree=0):
+    if from_task_tree:
+        project,company=frappe.db.get_value("Task",project,["project","company"])
     as_per=int(as_per)
     tasks =frappe.get_all("Project Template Task",filters= { "parent": template }, fields= ["name",'task',"subject",])
     self=frappe.get_doc("Project",project)
