@@ -109,11 +109,13 @@ def get_columns():
 	]
 	return columns
 def get_data(filters):
+	print(filters)
 	project_f=filters.get("project")
 	task_f =filters.get("task")
 	from_date=filters.get("from_date")
 	to_date=filters.get("to_date")
 	company=filters.get("company")
+	assign_to=filters.get("assign_to")
 	my_task_user=None
 	data=[]
 	task_data=frappe.db.sql("""select 
@@ -153,7 +155,7 @@ def get_data(filters):
 			  (f"and t.name ='{task_f}'" if task_f else ''),											 
 			f"  and t.exp_start_date is not Null and  t.exp_start_date != 0.0  and t.exp_start_date >= '{from_date}'  " if from_date else "",
 				f"and t.exp_end_date is not Null  and t.exp_end_date !=0.0  and t.exp_end_date <= '{to_date} '" if to_date else "",
-
+				
 				),as_dict=1)
 	for task in task_data:
 		leaf_data=get_root_leaf_task(task.get("name"),1,filters)
@@ -164,20 +166,23 @@ def get_data(filters):
 			task["bold"] =0
 		data.append(task)
 		data=data+leaf_data
-	if filters.show_my_tasks==1:
+	if filters.assign_to:
 		new_data=[]
 		for task in data:
-			user = frappe.session.user
-			if task.get("_assign") and  user in json.loads(task.get("_assign")):
+			user = filters.assign_to
+			if task.get("_assign") and  (taskuser for taskuser in  json.loads(task.get("_assign")) if taskuser in user  ):
 				new_data.append(task)
 		data=new_data
+	new_data=[]
 	for task in data:
 		if task.get("_assign"):
 			task["_assign"] = ",".join(json.loads(task.get("_assign")))
 		if task.get("custom_is_action_required"):
 			action_v=(frappe.get_all("Document List",{"parent":task.get("type")},["document_type"],pluck="document_type",order_by ="is_default desc"))
-			if action_v:
+			if action_v and task.get("_assign") and( frappe.session.user in task["_assign"]):
 				task["action"] = ",".join(action_v)
+		
+		
 	return data
 def get_root_leaf_task(task,indent,filters):
 	project_f=filters.get("project")

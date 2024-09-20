@@ -79,12 +79,15 @@ frappe.query_reports["Project Task Summary"] = {
 			}
 			
 		},
-
 		{
-			
-			fieldname: "show_my_tasks",
-			label: __("Show my tasks"),
-			fieldtype: "Check",
+			fieldtype: "MultiSelectPills",
+			fieldname: "assign_to",
+			label: __("Assign To"),
+			get_data: function (txt) {
+				return frappe.db.get_link_options("User", txt, {
+					enabled: 1,
+				});
+			},
 		},
 		
 		
@@ -129,7 +132,6 @@ frappe.query_reports["Project Task Summary"] = {
 	if (column["fieldname"] == "action"){
 		
 		if (value){
-			debugger
 			var task_name=data["name"]
 			value = `<button class="btn btn-default btn-xs" style=" cursor: pointer" onclick="frappe.query_reports['Project Task Summary'].creat_action('${value}','${task_name}')">Action</button>`;
 			
