@@ -142,8 +142,8 @@ frappe.query_reports["Project Task Summary"] = {
 
 	}
 	if (column["fieldname"] == "associated_docname"){
-		if (data["action"]){
-			var dt=data["action"]
+		if (data["show_action"]){
+			var dt=data["show_action"]
 			var task_f=data["name"]
 			value = `<button class="btn btn-default btn-xs" style=" cursor: pointer" onclick="frappe.query_reports['Project Task Summary'].show_list('${dt}','${task_f}')">Show</button>`;
 
@@ -233,7 +233,7 @@ frappe.query_reports["Project Task Summary"] = {
 			title: __("Select The Document Type"),
 			fields: [
 				{
-					label: "Documents",
+					label: "Document Type",
 					fieldname: "documents",
 					fieldtype: "Select",
 					reqd: 1,

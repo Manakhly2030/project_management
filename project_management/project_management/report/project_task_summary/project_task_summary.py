@@ -179,8 +179,10 @@ def get_data(filters):
 			task["_assign"] = ",".join(json.loads(task.get("_assign")))
 		if task.get("custom_is_action_required"):
 			action_v=(frappe.get_all("Document List",{"parent":task.get("type")},["document_type"],pluck="document_type",order_by ="is_default desc"))
-			if action_v and task.get("_assign") and( frappe.session.user in task["_assign"]):
-				task["action"] = ",".join(action_v)
+			if action_v:
+				if task.get("_assign") and( frappe.session.user in task["_assign"]):
+					task["action"] = ",".join(action_v)
+				task["show_action"] =",".join(action_v)
 		
 		
 	return data
