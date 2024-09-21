@@ -15,7 +15,8 @@ frappe.ui.form.on('Project', {
 						in_list_view: 1,
 						read_only: 1,
 						label: "Subject",
-						columns: 2
+						columns: 2,
+						hidden: 1,
 					},
 					{
 						fieldtype: "Link",
@@ -55,13 +56,13 @@ frappe.ui.form.on('Project', {
 							options: "Task Type",
 							in_list_view: 1,
 							read_only: 1,
-							columns: 2
+							columns: 1
 						   
 					},
 
 					
 					{
-						fieldtype: "Date",
+						fieldtype: "Datetime",
 						fieldname: "start_date",
 						label: __("Start Date"),
 						reqd:1,
@@ -97,11 +98,12 @@ frappe.ui.form.on('Project', {
 						
 					},
 					{
-						fieldtype: "Date",
+						fieldtype: "Datetime",
 						fieldname: "end_date",
 						in_list_view: 1,
 						label: __("End Date"),
 						read_only: 1,
+						columns: 2,
 
 					},
 				]
