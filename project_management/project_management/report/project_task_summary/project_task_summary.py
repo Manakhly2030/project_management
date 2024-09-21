@@ -109,14 +109,11 @@ def get_columns():
 	]
 	return columns
 def get_data(filters):
-	print(filters)
 	project_f=filters.get("project")
 	task_f =filters.get("task")
 	from_date=filters.get("from_date")
 	to_date=filters.get("to_date")
 	company=filters.get("company")
-	assign_to=filters.get("assign_to")
-	my_task_user=None
 	data=[]
 	task_data=frappe.db.sql("""select 
 							t.name,
@@ -169,14 +166,18 @@ def get_data(filters):
 	if filters.assign_to:
 		new_data=[]
 		for task in data:
-			user = filters.assign_to
-			if task.get("_assign") and  (taskuser for taskuser in  json.loads(task.get("_assign")) if taskuser in user  ):
+			matched_assigned_user = [item for item in filters.assign_to if item in json.loads(task.get("_assign"))] if task.get("_assign") else []
+			if matched_assigned_user:
+				task._assign = matched_assigned_user
 				new_data.append(task)
 		data=new_data
 	new_data=[]
 	for task in data:
 		if task.get("_assign"):
-			task["_assign"] = ",".join(json.loads(task.get("_assign")))
+			if isinstance(task.get("_assign"), str):
+				task["_assign"] = ",".join(json.loads(task.get("_assign")))
+			else:
+				task["_assign"] = ", ".join(task.get("_assign"))
 		if task.get("custom_is_action_required"):
 			action_v=(frappe.get_all("Document List",{"parent":task.get("type")},["document_type"],pluck="document_type",order_by ="is_default desc"))
 			if action_v:

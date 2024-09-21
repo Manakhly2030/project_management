@@ -14,8 +14,9 @@ frappe.ui.form.on('Project', {
 						fieldtype: "Data",
 						in_list_view: 1,
 						read_only: 1,
-						label: "Subject"
-					   },
+						label: "Subject",
+						columns: 2
+					},
 					{
 						fieldtype: "Link",
 						fieldname: "task",
@@ -23,6 +24,15 @@ frappe.ui.form.on('Project', {
 						in_list_view: 1,
 						label: __("Template Task"),
 						options: "Task",
+						columns: 2
+					},
+					{
+						fieldtype: "Check",
+						fieldname: "is_group",
+						read_only: 1,
+						in_list_view: 1,
+						label: __("Is Group"),
+						columns: 1
 					},
 					{
 						
@@ -33,6 +43,7 @@ frappe.ui.form.on('Project', {
 							oldfieldname: "expected_time",
 							in_list_view: 1,
 							read_only: 1,
+							columns: 1
 
 						   	
 					},
@@ -44,6 +55,7 @@ frappe.ui.form.on('Project', {
 							options: "Task Type",
 							in_list_view: 1,
 							read_only: 1,
+							columns: 2
 						   
 					},
 
@@ -53,6 +65,7 @@ frappe.ui.form.on('Project', {
 						fieldname: "start_date",
 						label: __("Start Date"),
 						reqd:1,
+						columns: 2,
 						in_list_view: 1,
 						change: () => {
 							
@@ -117,6 +130,8 @@ frappe.ui.form.on('Project', {
 										company:frm.doc.company,
 										as_per:as_per
 									},
+									freeze: true,
+									freeze_msg: "Processing",
 									callback: function (r) {
 										if (!r.exc) {
 											
@@ -202,7 +217,8 @@ frappe.ui.form.on('Project', {
 						},
         			],
         			primary_action: function () {
-        				var data = d.get_values();
+						d.get_primary_btn().prop('disabled', true);
+        				let data = d.get_values();
             				frappe.call({
             					method: "project_management.api.get_tasks_from_multiple_template",
             					args: {
@@ -214,6 +230,7 @@ frappe.ui.form.on('Project', {
 									
             					},
             					callback: function (r) {
+									d.get_primary_btn().prop('disabled', false);
             						if (!r.exc) {
             							if (r.message) {
 											frm.reload_doc();
