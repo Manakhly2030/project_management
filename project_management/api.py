@@ -86,7 +86,8 @@ def get_task_value(template,project,as_per,company,custom_start_dates=None,from_
                 self.expected_start_date=last_exp_date
                 task_start_duration=frappe.get_doc("Task",task.get("task"))
                 task["expected_time"]=task_start_duration.expected_time
-                task["type"]=task_start_duration.type
+                task["type"] = task_start_duration.type
+                task["is_group"]=task_start_duration.is_group
                 task ['start_date']=Project.calculate_start_date(self,task_start_duration)
                 task["end_date"]=Project.calculate_end_date(self,task_start_duration)
                 
@@ -96,6 +97,7 @@ def get_task_value(template,project,as_per,company,custom_start_dates=None,from_
                 task_start_duration=frappe.get_doc("Task",task.get("task"))
                 task["expected_time"]=task_start_duration.expected_time
                 task["type"]=task_start_duration.type
+                task["is_group"] = task_start_duration.is_group
                 task ['start_date']=update_if_holiday(self,last_exp_date)
                 task["end_date"]=task ['start_date']
                 
