@@ -6,32 +6,32 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "from_time",
-  "to_time"
+  "day",
+  "working_hours"
  ],
  "fields": [
   {
-   "fieldname": "from_time",
-   "fieldtype": "Time",
+   "fieldname": "day",
+   "fieldtype": "Select",
    "in_list_view": 1,
-   "label": "From Time",
-   "reqd": 1
+   "label": "Day",
+   "options": "Sunday\nMonday\nTuesday\nWednesday\nThursday\nFriday\nSaturday"
   },
   {
-   "fieldname": "to_time",
-   "fieldtype": "Time",
+   "fieldname": "working_hours",
+   "fieldtype": "Int",
    "in_list_view": 1,
-   "label": "To Time",
+   "label": "Working Hours",
    "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-09-12 10:34:26.891360",
+ "modified": "2024-09-21 18:52:23.643381",
  "modified_by": "Administrator",
  "module": "Project Management",
- "name": "Project working Time Table",
+ "name": "Project Working Time Table",
  "owner": "Administrator",
  "permissions": [],
  "sort_field": "modified",

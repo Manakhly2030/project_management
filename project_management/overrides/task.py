@@ -239,14 +239,14 @@ def find_worked_hours_next_start_time_with_end_time(end_time):
 def get_all_working_times():
 	get_all_working_times=[]
 	try:
-		get_all_working_times=frappe.db.get_all("Project working Time Table",{"parent":"Projects Settings"},["from_time","to_time"],order_by="from_time")
+		get_all_working_times=frappe.db.get_all("Project Working Time Table",{"parent":"Projects Settings"},["from_time","to_time"],order_by="from_time")
 	except Exception as e:
 		frappe.log_error(title="Get All Working Time",message=frappe.get_traceback(with_context=True))
 	return get_all_working_times
 def get_working_end_times():
 	end_time_list=[]
 	try:
-		end_time_list=frappe.db.get_all("Project working Time Table",{"parent":"Projects Settings"},"to_time",pluck="to_time")
+		end_time_list=frappe.db.get_all("Project Working Time Table",{"parent":"Projects Settings"},"to_time",pluck="to_time")
 		if end_time_list:
 			end_time_list=sorted(end_time_list)
 	except Exception as e:
@@ -255,7 +255,7 @@ def get_working_end_times():
 def get_working_start_times():
 	start_time_list=0
 	try:
-		start_time_list=frappe.db.get_all("Project working Time Table",{"parent":"Projects Settings"},"from_time",pluck="from_time")
+		start_time_list=frappe.db.get_all("Project Working Time Table",{"parent":"Projects Settings"},"from_time",pluck="from_time")
 		if start_time_list:
 			start_time_list=sorted(start_time_list)
 	except Exception as e:

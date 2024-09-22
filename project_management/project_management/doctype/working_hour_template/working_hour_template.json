@@ -5,26 +5,35 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "working_timeline",
-  "working_hours"
+  "from_time",
+  "to_time",
+  "working_timeline"
  ],
  "fields": [
   {
    "fieldname": "working_timeline",
    "fieldtype": "Table",
    "label": "Working Timeline",
-   "options": "Project working Time Table"
+   "options": "Project Working Time Table"
   },
   {
-   "fieldname": "working_hours",
-   "fieldtype": "Duration",
-   "label": "Working Hours"
+   "fieldname": "from_time",
+   "fieldtype": "Time",
+   "in_list_view": 1,
+   "label": "From Time",
+   "reqd": 1
+  },
+  {
+   "fieldname": "to_time",
+   "fieldtype": "Time",
+   "label": "To Time",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2024-09-20 11:46:20.439578",
+ "modified": "2024-09-21 18:49:12.996642",
  "modified_by": "Administrator",
  "module": "Project Management",
  "name": "Working Hour Template",

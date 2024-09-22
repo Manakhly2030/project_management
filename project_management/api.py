@@ -134,3 +134,44 @@ def update_if_we_working_time(tasks,project):
                 working_hours_per_project2=frappe.db.get_value("Task",filters2,"sum(expected_time)")
                 
                 working_hours_per_project=frappe.db.get_value("Task",filters,"sum(expected_time)")
+
+@frappe.whitelist()
+def fetch_task(template, parent_task, project):
+	task_list = []
+	next_start_date = ""
+	project = frappe.get_doc("Project", project)
+	task_template = frappe.get_doc("Project Template", template)
+	start_date = datetime.strptime(f"{project.expected_start_date} {'10:00:00'}", "%Y-%m-%d %H:%M:%S") or get_last_task_end_date(parent_task) or datetime.today()
+	for row in task_template.tasks:
+		task = frappe.get_doc("Task", row.task)
+		if task.is_group:
+			start_date = next_start_date or start_date
+			next_start_date = traverse_tasks_and_calculate_end_date(row.task, start_date)
+			task_list.append({"task": row.task, "is_group": task.is_group, "type": task.type, "start_date": start_date, "end_date": next_start_date})
+
+	return task_list
+		
+
+def get_last_task_end_date(parent_task):
+	child_tasks = frappe.get_all('Task', filters={'parent_task': parent_task}, fields=['name', 'is_group', 'exp_end_date', 'creation'], order_by='creation')
+	if not child_tasks:
+		parent_task_doc = frappe.get_doc('Task', parent_task)
+		return parent_task_doc.exp_end_date
+
+	last_created_task = None
+	for task in child_tasks:
+		if task.is_group:
+			end_date = get_last_task_end_date(task.name)
+		else:
+			if not last_created_task or task.creation > last_created_task.creation:
+				last_created_task = task
+				end_date = task.exp_end_date
+
+	return end_date
+
+def traverse_tasks_and_calculate_end_date(task, start_date):
+	task_list =  frappe.db.get_all("Task", {"parent_task": task}, ["name", "is_group", "expected_time"] ,order_by="creation")
+
+	for row in task_list:
+		if not row.is_group:
+			pass
