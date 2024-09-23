@@ -164,7 +164,12 @@ def fetch_task(template, parent_task, project):
 	if not from_time:
 		frappe.throw("Set From-time To-time in Project Working Time")
 	from_time = datetime.strptime(from_time, "%H:%M:%S").time()
-	start_date =  get_last_task_end_date(parent_task) or datetime.strptime(f"{project.expected_start_date} {from_time}", "%Y-%m-%d %H:%M:%S") if project.expected_start_date else None or datetime.combine(datetime.today(), from_time)
+	start_date =  get_last_task_end_date(parent_task) 
+	if not start_date:
+		start_date =datetime.strptime(f"{project.expected_start_date} {from_time}", "%Y-%m-%d %H:%M:%S") if project.expected_start_date else None 
+	if not start_date:
+		start_date=datetime.combine(datetime.today(), from_time)
+
 	start_date =update_if_holiday(project,start_date)
 	for row in task_template.tasks:
 		task = frappe.get_doc("Task", row.task)
@@ -196,25 +201,18 @@ def traverse_tasks_and_calculate_end_date(task, start_date,project):
 	date_time_object = datetime.strptime(str(start_date), "%Y-%m-%d %H:%M:%S")
 	task_list =  frappe.db.get_value("Task", task, ["expected_time"] ,as_dict=1)
 	remaining_duration = timedelta(hours=task_list.get("expected_time"))
-	print("remaining_duration  main",remaining_duration)
-	print("date_time_object",date_time_object)
 	time_intervals,from_time,to_time= get_all_working_times()
 	end_date_time=None
 	current_time=date_time_object.time()
 	day_workin_hrs=timedelta(hours=get_working_hrs(date_time_object))
-	print("day_workin_hrs main -1 ",day_workin_hrs)
 	from_time = datetime.strptime(from_time, "%H:%M:%S").time()
 	to_time =datetime.strptime(to_time, "%H:%M:%S").time()
 	datetime1 =date_time_object
 	
 	datetime2 = datetime.combine(date_time_object.date(), from_time)
-	print("datetime1",datetime1)
-	print("datetime2",datetime2)
 	diff_in_hrs=(datetime1-datetime2)
-	print("diff_in_hrs",diff_in_hrs)
 
 	day_workin_hrs=day_workin_hrs -diff_in_hrs
-	print("day_workin_hrs main-2 ",day_workin_hrs)
 	while remaining_duration > timedelta(0):
 		if current_time < from_time:
 			current_time=from_time
@@ -227,8 +225,6 @@ def traverse_tasks_and_calculate_end_date(task, start_date,project):
 				return end_date_time
 		else:
 			remaining_duration =remaining_duration-day_workin_hrs
-		print("date_time_object",date_time_object)
-		print("remaining_duration",remaining_duration)
 		date_time_object =add_days(date_time_object,1)
 		date_time_object =update_if_holiday(project,date_time_object)
 		date_time_object =datetime.combine(date_time_object.date(),from_time)
