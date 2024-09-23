@@ -80,7 +80,6 @@ frappe.ui.form.on('Project', {
 									template:template,
 									project:frm.doc.name,
 									company:frm.doc.company,
-									as_per:as_per,
 									custom_start_dates:task_table
 								},
 								callback: function (r) {
@@ -136,6 +135,7 @@ frappe.ui.form.on('Project', {
 											if (!r.exc) {
 												
 												if (r.message) {
+													d.set_value("parent_task", "");
 													d.fields_dict.task_table.df.data = r.message
 
 													d.fields_dict.task_table.refresh()
@@ -160,7 +160,8 @@ frappe.ui.form.on('Project', {
 									return{
 										filters:{
 										project:frm.doc.name,
-										is_group:1
+										is_group:1,
+										is_template:0
 										}
 									
 									}
@@ -237,7 +238,7 @@ frappe.ui.form.on('Project', {
 							cannot_add_rows: true,
 							cannot_delete_rows: true,
 							in_place_edit: true,
-							depends_on: "eval:doc.template",
+							depends_on: "eval:doc.parent_task",
 							fields: fields,
 							reqd:1,
 						
