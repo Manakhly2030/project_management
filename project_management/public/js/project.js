@@ -67,6 +67,7 @@ frappe.ui.form.on('Project', {
 						label: __("Start Date"),
 						reqd:1,
 						columns: 2,
+						read_only: 1,
 						in_list_view: 1,
 						change: () => {
 							
@@ -79,7 +80,6 @@ frappe.ui.form.on('Project', {
 									template:template,
 									project:frm.doc.name,
 									company:frm.doc.company,
-									as_per:as_per,
 									custom_start_dates:task_table
 								},
 								callback: function (r) {
@@ -121,31 +121,30 @@ frappe.ui.form.on('Project', {
 							
 							change: () => {
 								d.fields_dict.template.$input.blur()
-								
-								var template=d.get_value("template");
-								var as_per=d.get_value("as_per");
-								frappe.call({
-									method: "project_management.api.get_task_value",
-									args: {
-										template:template,
-										project:frm.doc.name,
-										company:frm.doc.company,
-										as_per:as_per
-									},
-									freeze: true,
-									freeze_msg: "Processing",
-									callback: function (r) {
-										if (!r.exc) {
-											
-											if (r.message) {
-												d.fields_dict.task_table.df.data =r.message
-
-												d.fields_dict.task_table.refresh()
+								if(d.get_value("template") && d.get_value('parent_task')){
+									frappe.call({
+										method: "project_management.api.fetch_task",
+										args: {
+											template: d.get_value("template"),
+											parent_task: d.get_value('parent_task'),
+											project: frm.doc.name
+										},
+										freeze: true,
+										freeze_msg: "Processing",
+										callback: function (r) {
+											if (!r.exc) {
 												
+												if (r.message) {
+													d.set_value("parent_task", "");
+													d.fields_dict.task_table.df.data = r.message
+
+													d.fields_dict.task_table.refresh()
+													
+												}
 											}
-										}
-									},
-								})
+										},
+									})
+								}
 
 							}
         					
@@ -155,55 +154,83 @@ frappe.ui.form.on('Project', {
         					fieldname: "parent_task",
         					fieldtype: "Link",
         					options:"Task",
+							reqd:1,
         					depends_on: "eval:doc.template",
 							get_query: function () {
 									return{
 										filters:{
 										project:frm.doc.name,
-										is_group:1
+										is_group:1,
+										is_template:0
 										}
 									
 									}
-								
+							},
+							change: () => {
+								d.fields_dict.template.$input.blur()
+								if(d.get_value("template") && d.get_value('parent_task')){
+									frappe.call({
+										method: "project_management.api.fetch_task",
+										args: {
+											template: d.get_value("template"),
+											parent_task: d.get_value('parent_task'),
+											project: frm.doc.name
+										},
+										freeze: true,
+										freeze_msg: "Processing",
+										callback: function (r) {
+											if (!r.exc) {
+												
+												if (r.message) {
+													d.fields_dict.task_table.df.data = r.message
+
+													d.fields_dict.task_table.refresh()
+													
+												}
+											}
+										},
+									})
+								}
+
 							}
 							
         					
         				},
-						{
-							label: "As Per Task Template",
-        					fieldname: "as_per",
-        					fieldtype: "Check",
-							description:"The start and end date will be As Per Task Template's duration and start",
-        					default:1,
-							change: () => {
-								d.fields_dict.template.$input.blur()
+						// {
+						// 	label: "As Per Task Template",
+        				// 	fieldname: "as_per",
+        				// 	fieldtype: "Check",
+						// 	description:"The start and end date will be As Per Task Template's duration and start",
+        				// 	default:1,
+						// 	change: () => {
+						// 		d.fields_dict.template.$input.blur()
 								
-								var template=d.get_value("template");
-								var as_per=d.get_value("as_per");
-								frappe.call({
-									method: "project_management.api.get_task_value",
-									args: {
-										template:template,
-										project:frm.doc.name,
-										company:frm.doc.company,
-										as_per:as_per
-									},
-									callback: function (r) {
-										if (!r.exc) {
+						// 		var template=d.get_value("template");
+						// 		var as_per=d.get_value("as_per");
+						// 		frappe.call({
+						// 			method: "project_management.api.get_task_value",
+						// 			args: {
+						// 				template:template,
+						// 				project:frm.doc.name,
+						// 				company:frm.doc.company,
+						// 				as_per:as_per
+						// 			},
+						// 			callback: function (r) {
+						// 				if (!r.exc) {
 											
-											if (r.message) {
-												d.fields_dict.task_table.df.data =r.message
+						// 					if (r.message) {
+						// 						d.fields_dict.task_table.df.data =r.message
 
-												d.fields_dict.task_table.refresh()
-											}
-										}
-									},
-								})
+						// 						d.fields_dict.task_table.refresh()
+						// 					}
+						// 				}
+						// 			},
+						// 		})
 
-							}
+						// 	}
 
 
-						},
+						// },
 						{
 							fieldname: "task_table",
 							fieldtype: "Table",
@@ -211,7 +238,7 @@ frappe.ui.form.on('Project', {
 							cannot_add_rows: true,
 							cannot_delete_rows: true,
 							in_place_edit: true,
-							depends_on: "eval:doc.template",
+							depends_on: "eval:doc.parent_task",
 							fields: fields,
 							reqd:1,
 						

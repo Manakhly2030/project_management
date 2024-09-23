@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class ProjectworkingTimeTable(Document):
+class ProjectWorkingTimeTable(Document):
 	pass
