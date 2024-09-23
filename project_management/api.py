@@ -160,11 +160,10 @@ def fetch_task(template, parent_task, project):
 	next_start_date = ""
 	project = frappe.get_doc("Project", project)
 	task_template = frappe.get_doc("Project Template", template)
-	from_time,to_time=frappe.db.get_value("Working Hour Template","Working Hour Template",["from_time","to_time"])
-	if not from_time:
-		frappe.throw("Set From-time To-time in Project Working Time")
+	working_hrs,from_time,to_time=get_all_working_times()
 	from_time = datetime.strptime(from_time, "%H:%M:%S").time()
-	start_date =  get_last_task_end_date(parent_task) 
+	to_time=datetime.strptime(to_time, "%H:%M:%S").time()
+	start_date =  get_last_task_end_date(parent_task,from_time,to_time,project) 
 	if not start_date:
 		start_date =datetime.strptime(f"{project.expected_start_date} {from_time}", "%Y-%m-%d %H:%M:%S") if project.expected_start_date else None 
 	if not start_date:
@@ -180,7 +179,7 @@ def fetch_task(template, parent_task, project):
 	return task_list
 		
 
-def get_last_task_end_date(parent_task):
+def get_last_task_end_date(parent_task,from_time,to_time,project):
 	child_tasks = frappe.get_all('Task', filters={'parent_task': parent_task}, fields=['name', 'is_group', 'exp_end_date', 'creation'], order_by='creation')
 	if not child_tasks:
 		parent_task_doc = frappe.get_doc('Task', parent_task)
@@ -188,13 +187,19 @@ def get_last_task_end_date(parent_task):
 	end_date=None
 	for task in child_tasks:
 		if task.is_group:
-			end_date = get_last_task_end_date(task.name)
+			end_date = get_last_task_end_date(task.name,from_time,to_time,project)
 		else:
 			if end_date:
 				if task.exp_end_date and task.exp_end_date > end_date:
 					end_date = task.exp_end_date
 			else:
 				end_date = task.exp_end_date
+	if end_date:
+		if end_date.time()<from_time:
+			end_date=datetime.combine(end_date.date(),from_time)
+		if end_date.time()>to_time:
+			end_date=add_days(end_date,1)
+			end_date =update_if_holiday(project,end_date)
 	return end_date
 
 def traverse_tasks_and_calculate_end_date(task, start_date,project):
@@ -235,12 +240,15 @@ def traverse_tasks_and_calculate_end_date(task, start_date,project):
 
 def get_working_hrs(date):
 	day_of_week = date.strftime("%A")
-	working_hours=frappe.db.get_value("Project Working Time Table",{"parent":"Working Hour Template","day":day_of_week},"working_hours")
-	if working_hours:
-		return working_hours
-	else:
-		frappe.throw("set working_hours for "+day_of_week)
+	working_hours=frappe.db.get_value("Project Working Time Table",{"parent":"Working Hour Template","day":day_of_week},"working_hours") or 0
+	return working_hours
 def get_all_working_times():
-	working_hours=frappe.db.get_all("Project Working Time Table",{"parent":"Working Hour Template"},["working_hours","day"])
-	from_time,to_time=frappe.db.get_value("Working Hour Template","Working Hour Template",["from_time","to_time"])
+	working_hours=None
+	from_time=None
+	to_time=None
+	try:
+		working_hours=frappe.db.get_all("Project Working Time Table",{"parent":"Working Hour Template"},["working_hours","day"])
+		from_time,to_time=frappe.db.get_value("Working Hour Template","Working Hour Template",["from_time","to_time"])
+	except Exception as e:
+		frappe.throw(str(e))
 	return working_hours,from_time,to_time
