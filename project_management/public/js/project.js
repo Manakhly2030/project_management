@@ -121,30 +121,7 @@ frappe.ui.form.on('Project', {
 							
 							change: () => {
 								d.fields_dict.template.$input.blur()
-								if(d.get_value("template") && d.get_value('parent_task')){
-									frappe.call({
-										method: "project_management.api.fetch_task",
-										args: {
-											template: d.get_value("template"),
-											parent_task: d.get_value('parent_task'),
-											project: frm.doc.name
-										},
-										freeze: true,
-										freeze_msg: "Processing",
-										callback: function (r) {
-											if (!r.exc) {
-												
-												if (r.message) {
-													d.set_value("parent_task", "");
-													d.fields_dict.task_table.df.data = r.message
-
-													d.fields_dict.task_table.refresh()
-													
-												}
-											}
-										},
-									})
-								}
+								d.set_value("parent_task", "");
 
 							}
         					
